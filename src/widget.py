@@ -6,15 +6,13 @@ from masks import get_mask_account
 """В модуле преобразуется формат даты, и маскировка ромеров карт и банковских счетов"""
 
 
-# def get_date(iso_date_str: str) -> str:
-#     """Преобразует дату из формата ISO8601 в формат 'DD.MM.YYYY'"""
-#     """Убираем формат секунды"""
-#     cleaned_iso_date = iso_date_str.split('.')[0]
-#     """Подставляем в метод преобразованную строку"""
-#     date_obj = datetime.strptime(cleaned_iso_date, "%Y-%m-%dT%H:%M:%S")
-#     """Возвращаем строку нужного формата"""
-#    # return date_obj.strftime("%d.%m.%Y")
-# print(get_date("2024-03-11T02:26:18.671407"))
+def get_date(iso_date_str: str) -> str:
+    """Преобразует дату из формата ISO8601 в формат 'DD.MM.YYYY'"""
+    cleaned_iso_date = iso_date_str.split('.')[0]
+    date_obj = datetime.strptime(cleaned_iso_date, "%Y-%m-%dT%H:%M:%S")
+    return date_obj.strftime("%d.%m.%Y")
+#print(get_date("2024-03-11T02:26:18.671407"))  # Ожидаемый результат: "11.03.2024"
+
 
 """Преобразование в формат маска счетов и карт"""
 
