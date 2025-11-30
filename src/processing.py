@@ -4,7 +4,7 @@
    указаному значению"""
 
 
-def filter_by_state(liste_dict: str, state_1: str) -> str:
+def filter_by_state(customer_information: str, state_1='EXECUTED') -> str:
     pass
 
 
@@ -13,5 +13,7 @@ def filter_by_state(liste_dict: str, state_1: str) -> str:
    список, отсортированный подате """
 
 
-def sort_by_date(liste_dict: str, date_1: str) -> str:
-    pass
+def sort_by_date(dict_list: List[Dict[str, Any]], reverse: bool = True) -> List[Dict[str, Any]]:
+    """Сортируем список словарей  по ключю key присваивая значение date через
+       функцию lambda, убывание организуем через reverse и аннотацию типов bool=True"""
+    return sorted(dict_list, key=lambda x: x['date'], reverse=reverse)
