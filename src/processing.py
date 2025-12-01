@@ -6,9 +6,9 @@ from typing import Any, Dict, List
    указаному значению"""
 
 
-def filter_by_state(dict_list: List[Dict[str, Any]], state: str = "EXECUTED") -> List[Dict[str, Any]]:
+def filter_by_state(data_list: List[Dict[str, Any]], state: str = "EXECUTED") -> List[Dict[str, Any]]:
     filtered_list = []
-    for item in dict_list:
+    for item in data_list:
         if item.get("state") == state:
             filtered_list.append(item)
 
@@ -20,10 +20,10 @@ def filter_by_state(dict_list: List[Dict[str, Any]], state: str = "EXECUTED") ->
    список, отсортированный подате """
 
 
-def sort_by_date(dict_list: List[Dict[str, Any]], reverse: bool = True) -> List[Dict[str, Any]]:
+def sort_by_date(data_list: List[Dict[str, Any]], reverse: bool = True) -> List[Dict[str, Any]]:
     """Сортируем список словарей  по ключю key присваивая значение date через
     функцию lambda, убывание организуем через reverse и аннотацию типов bool=True"""
-    return sorted(dict_list, key=lambda x: x["date"], reverse=reverse)
+    return sorted(data_list, key=lambda item: item["date"], reverse=reverse)
 
 
 # if __name__ == "__main__":
