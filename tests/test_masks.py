@@ -14,4 +14,13 @@ def test_get_mask_card_number_invalid_len():
         get_mask_card_number(0)
 
 
+@pytest.mark.parametrize("account_number, expected", [(47824951856485234578, "**4578"),
+                                                   (58917005236482571998, "**1998"),
+                                                   (86479655482000214786, "**4786")])
+def test_get_mask_account(account_number, expected):
+    assert get_mask_account(account_number) == expected
+
+def test_get_mask_account_invalid_len():
+    with pytest.raises(ValueError):
+        get_mask_account(0)
 
