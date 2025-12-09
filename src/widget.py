@@ -1,6 +1,6 @@
 from datetime import datetime
-from masks import get_mask_card_number
-from masks import get_mask_account
+from src.masks import get_mask_card_number
+from src.masks import get_mask_account
 
 
 """В модуле преобразуется формат даты, и маскировка ромеров карт и банковских счетов"""
@@ -26,7 +26,7 @@ def mask_account_card(account_string: str) -> str:
         if i.isalpha():
             account_name += i
     if account_string.startswith("Счет"):
-        return f"Счет {get_mask_account(account_string)}"
+        return f"Счет {get_mask_account(card_string)}"
     else:
         for i in account_string:
             if i.isdigit():
