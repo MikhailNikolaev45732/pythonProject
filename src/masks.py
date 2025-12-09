@@ -7,7 +7,14 @@
 def get_mask_card_number(card_number: int) -> str:
     """Функция  принимает на вход номер карты и возвращает ее маску."""
     card_str = str(card_number)
-    return card_str[:4] + " " + card_str[4:6] + "** **** " + card_str[-4:]
+    card_num_len = len(card_str)
+
+    if  card_num_len > 0 and card_num_len != 16:
+        raise ValueError("Некорректный ввод номера")
+    elif card_num_len == 0:
+        raise ValueError("Введите номер")
+
+    return card_str[:4] + " " + card_str[4:6] + "** ****" + card_str[-4:]
 
 
 """Функция get_mask_account принимает на вход номер счета и возвращает
