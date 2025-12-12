@@ -28,9 +28,9 @@ def get_mask_account(account_number: int) -> str:
     account_str = str(account_number)
     account_num_len = len(account_str)
 
-    if account_num_len > 0 and account_num_len != 20:
-        raise ValueError("Некорректный ввод номера")
-    elif account_num_len == 0:
-        raise ValueError("Введите номер")
+    #if account_num_len > 0 and account_num_len != 20:
+        #raise ValueError("Некорректный ввод номера")
+    #elif account_num_len == 0:
+       # raise ValueError("Введите номер")
 
     return "**" + account_str[-4:]

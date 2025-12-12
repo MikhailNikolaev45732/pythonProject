@@ -22,18 +22,27 @@ def get_date(iso_date_str: str) -> str:
 def mask_account_card(account_string: str) -> str:
     account_name = ""
     card_string = list()
+
+
     for i in account_string:
         if i.isalpha():
             account_name += i
-    if account_string.startswith("Счет"):
-        return f"Счет {get_mask_account(card_string)}"
-    else:
-        for i in account_string:
-            if i.isdigit():
+
+    for i in account_string:
+        if i.isdigit():
                 card_string.append(i)
-    masked_card = get_mask_card_number("".join(card_string))
-    return account_name + " " + masked_card
 
 
-# print(mask_account_card("Visa Platinum 7000792289606361"))# Ожидаемый результат: "Visa Platinum 7000 79** **** 6361"
-# print(mask_account_card("Счет 73654108430135874305"))  # Ожидаемый результат: "Счет **4305"
+    if account_string.startswith("Счет"):
+        return f"Счет {get_mask_account("".join(card_string))}"
+    else:
+        masked_card = get_mask_card_number("".join(card_string))
+        return account_name + " " + masked_card
+
+#print(mask_account_card("Visa Platinum 7000792289606361"))# Ожидаемый результат: "Visa Platinum 7000 79** **** 6361"
+#print(mask_account_card("Счет 73654108430135874305"))  # Ожидаемый результат: "Счет **4305"
+# if __name__ == "__main__":
+#
+#     numbe_card = "Счет 73654108430135874305"
+# result = mask_account_card(numbe_card)
+# print(result)
