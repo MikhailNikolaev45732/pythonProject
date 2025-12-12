@@ -8,6 +8,9 @@ from src.masks import get_mask_account
 
 def get_date(iso_date_str: str) -> str:
     """Преобразует дату из формата ISO8601 в формат 'DD.MM.YYYY'"""
+    if iso_date_str == "":
+        raise ValueError("Введите дату")
+
     cleaned_iso_date = iso_date_str.split(".")[0]
     date_obj = datetime.strptime(cleaned_iso_date, "%Y-%m-%dT%H:%M:%S")
     return date_obj.strftime("%d.%m.%Y")
@@ -22,17 +25,12 @@ def get_date(iso_date_str: str) -> str:
 def mask_account_card(account_string: str) -> str:
     account_name = ""
     card_string = list()
-
-
     for i in account_string:
         if i.isalpha():
             account_name += i
-
     for i in account_string:
         if i.isdigit():
                 card_string.append(i)
-
-
     if account_string.startswith("Счет"):
         return f"Счет {get_mask_account("".join(card_string))}"
     else:

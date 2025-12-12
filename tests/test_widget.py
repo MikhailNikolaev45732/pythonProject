@@ -16,3 +16,19 @@ from src.widget import get_date
 
 def test_mask_account_card(account_string, expected):
     assert mask_account_card(account_string) == expected
+
+
+@pytest.mark.parametrize("date_string, expected", [
+                                                  ("2024-03-15T02:26:18.671407", "15.03.2024"),
+                                                  ("2022-04-30T02:26:18.671407", "30.04.2022"),
+                                                  ("2024-01-05T02:26:18.671407", "05.01.2024"),
+                                                  ("2025-11-12T02:26:18.671407", "12.11.2025"),
+                                                   ])
+
+def test_get_date(date_string, expected):
+    assert  get_date(date_string) == expected
+
+
+def test_get_date_invalid_input():
+    with pytest.raises(ValueError):
+        get_date(" ")
