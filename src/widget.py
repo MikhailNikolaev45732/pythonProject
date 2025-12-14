@@ -30,15 +30,16 @@ def mask_account_card(account_string: str) -> str:
             account_name += i
     for i in account_string:
         if i.isdigit():
-                card_string.append(i)
+            card_string.append(i)
     if account_string.startswith("Счет"):
         return f"Счет {get_mask_account("".join(card_string))}"
     else:
         masked_card = get_mask_card_number("".join(card_string))
         return account_name + " " + masked_card
 
-#print(mask_account_card("Visa Platinum 7000792289606361"))# Ожидаемый результат: "Visa Platinum 7000 79** **** 6361"
-#print(mask_account_card("Счет 73654108430135874305"))  # Ожидаемый результат: "Счет **4305"
+
+# print(mask_account_card("Visa Platinum 7000792289606361"))# Ожидаемый результат: "Visa Platinum 7000 79** **** 6361"
+# print(mask_account_card("Счет 73654108430135874305"))  # Ожидаемый результат: "Счет **4305"
 # if __name__ == "__main__":
 #
 #     numbe_card = "Счет 73654108430135874305"
