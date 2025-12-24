@@ -33,3 +33,17 @@ if __name__ == "__main__":
     descriptions = transaction_descriptions(transactions)
     for _ in range(5):
         print(next(descriptions))
+
+
+import random
+
+def card_number_generator(start: int, stop: int):
+    for _ in range(start, stop):
+        num = random.randint(start, stop)
+        num_str = f"{num:016d}"
+        formatted_number = f"{num_str[:4]} {num_str[4:8]} {num_str[8:12]} {num_str[12:]}"
+        yield formatted_number
+
+if __name__ == "__main__":
+    for card_number in card_number_generator(start=1, stop=25):
+        print(card_number)
