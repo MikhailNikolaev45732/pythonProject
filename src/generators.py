@@ -42,8 +42,13 @@ if __name__ == "__main__":
 import random
 
 def card_number_generator(start: int, stop: int):
-    for _ in range(start, stop):
-        num = random.randint(start, stop)
+    # for _ in range(start, stop):
+    #     num = random.randint(start, stop)
+    #     num_str = f"{num:016d}"
+    #     formatted_number = f"{num_str[:4]} {num_str[4:8]} {num_str[8:12]} {num_str[12:]}"
+    #     yield formatted_number
+
+    for num in range(start, stop + 1):
         num_str = f"{num:016d}"
         formatted_number = f"{num_str[:4]} {num_str[4:8]} {num_str[8:12]} {num_str[12:]}"
         yield formatted_number
