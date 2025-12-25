@@ -3,17 +3,18 @@ import json
 
 # Функция возвращает итератор, который выдает транзакции, где валюта операции соответствует заданной
 def filter_by_currency(transactions, currency):
-     """Задаем перебор словарей по ключу currency"""
-     if transactions == []:
-         raise ValueError("Введите данные для обработки")
-     transaction_usd = (transaction for transaction in transactions
-     if transaction["operationAmount"]["currency"]["code"] == currency)
-     return transaction_usd
+    """Задаем перебор словарей по ключу currency"""
+    if transactions == []:
+        raise ValueError("Введите данные для обработки")
+    transaction_usd = (
+        transaction for transaction in transactions if transaction["operationAmount"]["currency"]["code"] == currency
+    )
+    return transaction_usd
 
 
 if __name__ == "__main__":
     """Обращаемся к списоку словарей в файле transactions.txt"""
-    with open('transactions.txt', 'r', encoding='utf-8') as file:
+    with open("transactions.txt", "r", encoding="utf-8") as file:
         transactions = json.load(file)
 
     usd_transactions = filter_by_currency(transactions, "USD")
@@ -29,9 +30,10 @@ def transaction_descriptions(transactions):
     description_list = (transaction["description"] for transaction in transactions)
     return description_list
 
+
 if __name__ == "__main__":
     """Обращаемся к списоку словарей в файле transactions.txt"""
-    with open('transactions.txt', 'r', encoding='utf-8') as file:
+    with open("transactions.txt", "r", encoding="utf-8") as file:
         transactions = json.load(file)
 
     descriptions = transaction_descriptions(transactions)
@@ -39,8 +41,7 @@ if __name__ == "__main__":
         print(next(descriptions))
 
 
-import random
-
+# import random
 def card_number_generator(start: int, stop: int):
     # for _ in range(start, stop):
     #     num = random.randint(start, stop)
@@ -52,6 +53,7 @@ def card_number_generator(start: int, stop: int):
         num_str = f"{num:016d}"
         formatted_number = f"{num_str[:4]} {num_str[4:8]} {num_str[8:12]} {num_str[12:]}"
         yield formatted_number
+
 
 if __name__ == "__main__":
     for card_number in card_number_generator(start=1, stop=2):
