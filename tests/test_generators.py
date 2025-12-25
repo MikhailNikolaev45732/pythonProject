@@ -1,5 +1,7 @@
 import pytest
 from src.generators import filter_by_currency
+from src.generators import transaction_descriptions
+from src.generators import card_number_generator
 import json
 #from conftest import filter_by_currency_e
 #with open('src.transactions.txt', 'r', encoding='utf-8') as file:
@@ -133,6 +135,13 @@ def transactions():
         }]
 
 
+@pytest.fixture
+def description():
+    return ["Перевод организации",
+           "Перевод со счета на счет",
+           "Перевод со счета на счет",
+           "Перевод с карты на карту",
+           "Перевод организации"]
 
 
 def test_filter_by_currency(transactions, filter_by_currency_e):
@@ -140,6 +149,25 @@ def test_filter_by_currency(transactions, filter_by_currency_e):
      assert result == filter_by_currency_e
 
 
+def test_filter_by_currency_invalid():
+    with pytest.raises(ValueError):
+        filter_by_currency([], [])
 
 
+def test_transaction_descriptions(transactions, description):
+    result = list(transaction_descriptions(transactions))
+    assert result == description
 
+
+def test_transaction_descriptions_invalid():
+    with pytest.raises(ValueError):
+        transaction_descriptions([])
+
+
+@pytest.mark.parametrize("start, stop, expected_cards", [
+    (4000000000000000, 4000000000000002, ["4000 0000 0000 0000", "4000 0000 0000 0001", "4000 0000 0000 0002"]),
+    (4000000000000005, 4000000000000007, ["4000 0000 0000 0005", "4000 0000 0000 0006", "4000 0000 0000 0007"]),
+])
+def test_card_number_generator(start, stop, expected_cards):
+    result = list(card_number_generator(start, stop))
+    assert result == expected_cards

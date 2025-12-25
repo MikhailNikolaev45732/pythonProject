@@ -4,6 +4,8 @@ import json
 # Функция возвращает итератор, который выдает транзакции, где валюта операции соответствует заданной
 def filter_by_currency(transactions, currency):
      """Задаем перебор словарей по ключу currency"""
+     if transactions == []:
+         raise ValueError("Введите данные для обработки")
      transaction_usd = (transaction for transaction in transactions
      if transaction["operationAmount"]["currency"]["code"] == currency)
      return transaction_usd
@@ -22,6 +24,8 @@ if __name__ == "__main__":
 # Генератор transaction_descriptions, принимает список словарей с транзакциями и возвращает описание каждой
 # операции по очереди
 def transaction_descriptions(transactions):
+    if transactions == []:
+        raise ValueError("Введите данные для обработки")
     description_list = (transaction["description"] for transaction in transactions)
     return description_list
 
@@ -45,5 +49,5 @@ def card_number_generator(start: int, stop: int):
         yield formatted_number
 
 if __name__ == "__main__":
-    for card_number in card_number_generator(start=1, stop=25):
+    for card_number in card_number_generator(start=1, stop=2):
         print(card_number)
