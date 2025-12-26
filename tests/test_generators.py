@@ -7,6 +7,8 @@ import json
 #with open('src.transactions.txt', 'r', encoding='utf-8') as file:
    # transactions = json.load(file)
 
+
+# В этом блоке собраны фикстуры для каждой из функцый которые вызываются в ниже написанных тестах
 @pytest.fixture
 def filter_by_currency_e():
     return [{
@@ -144,6 +146,7 @@ def description():
            "Перевод организации"]
 
 
+# Тесты для функций модуля generators.py с помощю фикстур, тесты возвращают ожидаемый результат
 def test_filter_by_currency(transactions, filter_by_currency_e):
      result = list(filter_by_currency(transactions, 'USD'))
      assert result == filter_by_currency_e
@@ -164,6 +167,8 @@ def test_transaction_descriptions_invalid():
         transaction_descriptions([])
 
 
+# Генератор номеров банковских карт, тестируем при помощи параметризации данных, возвращается
+# ожидаемый результат
 @pytest.mark.parametrize("start, stop, expected_cards", [
     (4000000000000000, 4000000000000002, ["4000 0000 0000 0000", "4000 0000 0000 0001", "4000 0000 0000 0002"]),
     (4000000000000005, 4000000000000007, ["4000 0000 0000 0005", "4000 0000 0000 0006", "4000 0000 0000 0007"]),
