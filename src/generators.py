@@ -22,7 +22,7 @@ if __name__ == "__main__":
         print(next(usd_transactions))
 
 
-# Генератор transaction_descriptions, принимает список словарей с транзакциями и возвращает описание каждой
+# Генератор transaction_descriptions, принимает список словарей с транзакциями и возвращает описание каждой.
 # операции по очереди
 def transaction_descriptions(transactions):
     if transactions == []:
