@@ -21,7 +21,7 @@ popetry add requests
 
 ## Тестирование:
 1. Добавте в окружение пайтесты:
-   poetry add --group dev pytest pytest-cov
+   poetry add --group dev pytest pytest-cov.
 2. Все тесты находятся в пакете tests и разбиты на модули
    соответствующие модулям программ в пакете src.
 ## Лицензия:

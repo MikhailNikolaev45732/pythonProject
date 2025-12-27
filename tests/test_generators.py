@@ -146,7 +146,7 @@ def description():
            "Перевод организации"]
 
 
-# Тесты для функций модуля generators.py с помощю фикстур, тесты возвращают ожидаемый результат
+# Тесты для функций модуля generators.py с помощю фикстур, тесты возвращают ожидаемый результат.
 def test_filter_by_currency(transactions, filter_by_currency_e):
      result = list(filter_by_currency(transactions, 'USD'))
      assert result == filter_by_currency_e

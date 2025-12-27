@@ -3,7 +3,7 @@ import json
 
 # Функция возвращает итератор, который выдает транзакции, где валюта операции соответствует заданной
 def filter_by_currency(transactions, currency):
-    """Задаем перебор словарей по ключу currency"""
+    """Задаем перебор словарей по ключу currency."""
     if transactions == []:
         raise ValueError("Введите данные для обработки")
     transaction_usd = (
