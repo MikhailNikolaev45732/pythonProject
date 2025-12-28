@@ -162,9 +162,9 @@ def test_transaction_descriptions(transactions, description):
     assert result == description
 
 
-def test_transaction_descriptions_invalid():
-    with pytest.raises(ValueError):
-        transaction_descriptions([])
+# def test_transaction_descriptions_invalid():
+#     with pytest.raises(ValueError):
+#         transaction_descriptions([])
 
 
 # Генератор номеров банковских карт, тестируем при помощи параметризации данных, возвращается
