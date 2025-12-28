@@ -1,7 +1,7 @@
 import json
 
 
-# Функция возвращает итератор, который выдает транзакции, где валюта операции соответствует заданной
+"""Функция возвращает итератор, который выдает транзакции, где валюта операции соответствует заданной"""
 def filter_by_currency(transactions, currency):
     """Задаем перебор словарей по ключу currency."""
     if transactions == []:
@@ -22,13 +22,15 @@ if __name__ == "__main__":
         print(next(usd_transactions))
 
 
-# Генератор transaction_descriptions, принимает список словарей с транзакциями и возвращает описание каждой.
-# операции по очереди
+"""Генератор transaction_descriptions, принимает список словарей с транзакциями и возвращает описание каждой.
+операции по очереди"""
 def transaction_descriptions(transactions):
     if transactions == []:
         raise ValueError("Введите данные для обработки")
-    description_list = (transaction["description"] for transaction in transactions)
-    return description_list
+    # description_list = (transaction["description"] for transaction in transactions)
+    # yield description_list
+    for transaction in transactions:
+        yield transaction["description"]
 
 
 if __name__ == "__main__":
@@ -37,13 +39,14 @@ if __name__ == "__main__":
         transactions = json.load(file)
 
     descriptions = transaction_descriptions(transactions)
-    for _ in range(5):
-        print(next(descriptions))
+    for _ in range(3):
+        #range(5):
+       # print(next(descriptions))
+       print(next(descriptions))
 
-
-# import random
-# Генератор , выдает номера банковских карт в формате хххх хххх хххх хххх , где х - цифра
-# номера карты. Генератор должен принимать начальное и конечное значение для генерации диапозона номеров.
+import random
+"""Генератор , выдает номера банковских карт в формате хххх хххх хххх хххх , где х - цифра
+номера карты. Генератор должен принимать начальное и конечное значение для генерации диапозона номеров."""
 def card_number_generator(start: int, stop: int):
     # for _ in range(start, stop):
     #     num = random.randint(start, stop)
