@@ -29,7 +29,7 @@ def transaction_descriptions(transactions):
     if transactions == []:
         raise ValueError("Введите данные для обработки")
     """Перебираем словари по ключу description, слово yield возвращает значения по запросу, в данной
-    функции количество запросов передаём  аргументом в range()"""
+    функции количество запросов передаём  аргументом в range()."""
     for transaction in transactions:
         yield transaction["description"]
 
