@@ -25,10 +25,11 @@ if __name__ == "__main__":
 """Генератор transaction_descriptions, принимает список словарей с транзакциями и возвращает описание каждой.
 операции по очереди"""
 def transaction_descriptions(transactions):
+    """В начале ставим исключение, на случай отсутствия данных"""
     if transactions == []:
         raise ValueError("Введите данные для обработки")
-    # description_list = (transaction["description"] for transaction in transactions)
-    # yield description_list
+    """Перебираем словари по ключу description, слово yield возвращает значения по запросу, в данной
+    функции количество запросов передаём  аргументом в range()"""
     for transaction in transactions:
         yield transaction["description"]
 
