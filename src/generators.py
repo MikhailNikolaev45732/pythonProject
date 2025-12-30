@@ -37,7 +37,7 @@ if __name__ == "__main__":
         transactions = json.load(file)
 
     descriptions = transaction_descriptions(transactions)
-    for _ in range(3):
+    for _ in range(5):
         #range(5):
        # print(next(descriptions))
        print(next(descriptions))

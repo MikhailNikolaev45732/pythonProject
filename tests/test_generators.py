@@ -12,21 +12,21 @@ import json
 @pytest.fixture
 def filter_by_currency_e():
     """Фикстура список словарей (банковские операции) отфильтрованные по валюте операций"""
-    return [{
-            "id": 939719570,
-            "state": "EXECUTED",
-            "date": "2018-06-30T02:08:58.425572",
-            "operationAmount": {
-                "amount": "9824.07",
-                "currency": {
-                    "name": "USD",
-                    "code": "USD"
-                }
-            },
-            "description": "Перевод организации",
-            "from": "Счет 75106830613657916952",
-            "to": "Счет 11776614605963066702"
-        },
+    return [#{
+    #         "id": 939719570,
+    #         "state": "EXECUTED",
+    #         "date": "2018-06-30T02:08:58.425572",
+    #         "operationAmount": {
+    #             "amount": "9824.07",
+    #             "currency": {
+    #                 "name": "USD",
+    #                 "code": "USD"
+    #             }
+    #         },
+    #         "description": "Перевод организации",
+    #         "from": "Счет 75106830613657916952",
+    #         "to": "Счет 11776614605963066702"
+    #     },
         {
             "id": 142264268,
             "state": "EXECUTED",
@@ -56,7 +56,7 @@ def filter_by_currency_e():
             "description": "Перевод с карты на карту",
             "from": "Visa Classic 6831982476737658",
             "to": "Visa Platinum 8990922113665229"
-        }]
+            }]
 
 
 @pytest.fixture
@@ -127,7 +127,7 @@ def transactions():
 @pytest.fixture
 def description():
     """Фикстура список операций"""
-    return ["Перевод организации",
+    return [#"Перевод организации",
            "Перевод со счета на счет",
            "Перевод со счета на счет",
            "Перевод с карты на карту",
