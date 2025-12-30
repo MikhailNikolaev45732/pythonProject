@@ -1,9 +1,9 @@
 import json
 
 
-"""Функция возвращает итератор, который выдает транзакции, где валюта операции соответствует заданной"""
 def filter_by_currency(transactions, currency):
-    """Задаем перебор словарей по ключу currency."""
+    """Функция принимает список словарей и возвращает итератор, который выдает транзакции,
+     где валюта операции соответствует заданной"""
     if transactions == []:
         raise ValueError("Введите данные для обработки")
     transaction_usd = (
@@ -13,7 +13,6 @@ def filter_by_currency(transactions, currency):
 
 
 if __name__ == "__main__":
-    """Обращаемся к списоку словарей в файле transactions.txt"""
     with open("transactions.txt", "r", encoding="utf-8") as file:
         transactions = json.load(file)
 
@@ -22,20 +21,18 @@ if __name__ == "__main__":
         print(next(usd_transactions))
 
 
-"""Генератор transaction_descriptions, принимает список словарей с транзакциями и возвращает описание каждой.
-операции по очереди"""
+
 def transaction_descriptions(transactions):
-    """В начале ставим исключение, на случай отсутствия данных"""
+    """Генератор transaction_descriptions, принимает список словарей с транзакциями и по очереди возвращает
+    описание каждой операции"""
     if transactions == []:
         raise ValueError("Введите данные для обработки")
-    """Перебираем словари по ключу description, слово yield возвращает значения по запросу, в данной
-    функции количество запросов передаём  аргументом в range()."""
+
     for transaction in transactions:
         yield transaction["description"]
 
 
 if __name__ == "__main__":
-    """Обращаемся к списоку словарей в файле transactions.txt"""
     with open("transactions.txt", "r", encoding="utf-8") as file:
         transactions = json.load(file)
 
@@ -46,15 +43,16 @@ if __name__ == "__main__":
        print(next(descriptions))
 
 import random
-"""Генератор , выдает номера банковских карт в формате хххх хххх хххх хххх , где х - цифра
-номера карты. Генератор должен принимать начальное и конечное значение для генерации диапозона номеров."""
+
+
 def card_number_generator(start: int, stop: int):
     # for _ in range(start, stop):
     #     num = random.randint(start, stop)
     #     num_str = f"{num:016d}"
     #     formatted_number = f"{num_str[:4]} {num_str[4:8]} {num_str[8:12]} {num_str[12:]}"
     #     yield formatted_number
-    """В этом блоке функция генерирует номер в заданном формате и диапозоне"""
+    """Генератор , выдает номера банковских карт в формате хххх хххх хххх хххх , где х - цифра
+номера карты. Генератор должен принимать начальное и конечное значение для генерации диапозона номеров"""
     for num in range(start, stop + 1):
         num_str = f"{num:016d}"
         formatted_number = f"{num_str[:4]} {num_str[4:8]} {num_str[8:12]} {num_str[12:]}"
