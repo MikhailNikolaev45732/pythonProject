@@ -1,2 +1,4 @@
 Function: my_function. Result: 3
 Function: my_function. Result: 3
+Function: my_function. Result: 3
+Function: my_function. Result: 3
