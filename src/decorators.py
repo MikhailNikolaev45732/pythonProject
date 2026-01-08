@@ -1,30 +1,6 @@
 from functools import wraps
 
 
-# def log(filename=None):
-#     def decorator(func):
-#         @wraps(func)
-#         def wrapper(*args):
-#             result = func(*args)
-#             if filename:
-#                 with open(filename, 'a') as f:
-#                     f.write(f"Function: {func.__name__}. Result: {result}\n")
-#             else:
-#                 print(f"Function:{func.__name__}. Result: {result}")
-#             return result
-#         return wrapper
-#     return decorator
-#
-#
-# @log(filename="mylog.txt")
-# #@log()
-# def my_function(x, y):
-#     """Функция складывает аргументы полученные на вход"""
-#     return x + y
-#
-# my_function(1, 2)
-
-
 def log(filename=None):
     """Декоратор для логирования"""
 
