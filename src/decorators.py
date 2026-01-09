@@ -11,7 +11,7 @@ def log(filename=None):
                 result = func(*args, **kwargs)
                 log_message = f"Function: {func.__name__}. Result: {result}"
                 if filename:
-                    with open(filename, 'a') as f:
+                    with open(filename, "a") as f:
                         f.write(f"Function: {func.__name__}. Result: {result}\n")
                 else:
                     print(log_message)
@@ -34,6 +34,7 @@ def log(filename=None):
 def my_function(x, y):
     """Функция складывает аргументы полученные на вход"""
     return x + y
+
 
 my_function(1, 2)
 help(my_function)
