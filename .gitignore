@@ -39,7 +39,7 @@ pip-delete-this-directory.txt
 
 .tox/
 .nox/
-.coverage
+#.coverage
 .coverage.*
 .cache
 nosetests.xml
@@ -211,3 +211,4 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 .idea/
+mylog.txt
