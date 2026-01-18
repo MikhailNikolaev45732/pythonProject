@@ -1,0 +1,22 @@
+import json
+
+
+def get_transaction_data(filepath: str)  -> list[dict]:
+    """ Функция принимает на вход путь до JSON-файла и возвращает   список словарей с данными о финансовых транзакциях.
+    """
+    try:
+        with open(filepath, "r", encoding="utf-8") as transaction_file:
+            try:
+                transaction_data = json.load(transaction_file)
+                return transaction_data
+            except JSONDecodeError:
+                print("Ошибка декодирования файла")
+                return []
+    except FileNotFoundError:
+        print(f"Файл {filepath} не найден")
+        return []
+
+# Проверка - вывод списка
+# print(get_transaction_data("../data/operations.json"))
+# if __name__ == "__main__":
+   # get_transaction_data("../data/operations.json")
