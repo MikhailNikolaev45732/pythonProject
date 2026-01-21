@@ -3,30 +3,16 @@ from src.generators import filter_by_currency
 from src.generators import transaction_descriptions
 from src.generators import card_number_generator
 import json
-#from conftest import filter_by_currency_e
-#with open('src.transactions.txt', 'r', encoding='utf-8') as file:
-   # transactions = json.load(file)
+# from conftest import filter_by_currency_e
+# with open('src.transactions.txt', 'r', encoding='utf-8') as file:
+# transactions = json.load(file)
 
 
 # В этом блоке собраны фикстуры для каждой из функцый которые вызываются в ниже написанных тестах
 @pytest.fixture
 def filter_by_currency_e():
     """Фикстура список словарей (банковские операции) отфильтрованные по валюте операций"""
-    return [#{
-    #         "id": 939719570,
-    #         "state": "EXECUTED",
-    #         "date": "2018-06-30T02:08:58.425572",
-    #         "operationAmount": {
-    #             "amount": "9824.07",
-    #             "currency": {
-    #                 "name": "USD",
-    #                 "code": "USD"
-    #             }
-    #         },
-    #         "description": "Перевод организации",
-    #         "from": "Счет 75106830613657916952",
-    #         "to": "Счет 11776614605963066702"
-    #     },
+    return [
         {
             "id": 142264268,
             "state": "EXECUTED",
@@ -127,7 +113,7 @@ def transactions():
 @pytest.fixture
 def description():
     """Фикстура список операций"""
-    return [#"Перевод организации",
+    return [
            "Перевод со счета на счет",
            "Перевод со счета на счет",
            "Перевод с карты на карту",
