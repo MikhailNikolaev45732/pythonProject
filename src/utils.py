@@ -1,7 +1,7 @@
 import json
+import os
 
-
-def get_transaction_data(filepath: str)  -> list[dict]:
+def get_transaction_data(filepath: str)  -> str:
     """ Функция принимает на вход путь до JSON-файла и возвращает   список словарей с данными о финансовых транзакциях.
     """
     try:
@@ -17,6 +17,6 @@ def get_transaction_data(filepath: str)  -> list[dict]:
         return []
 
 # Проверка - вывод списка
-# print(get_transaction_data("../data/operations.json"))
-# if __name__ == "__main__":
-   # get_transaction_data("../data/operations.json")
+#print(get_transaction_data("../data/operations.json"))
+if __name__ == "__main__":
+     print(get_transaction_data(os.path.join(os.path.dirname(__file__), '../data/operations.json')))

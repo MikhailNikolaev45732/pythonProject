@@ -147,7 +147,7 @@ activemq-data/
 *.sage.py
 
 # Environments
-.env
+src/.env
 .envrc
 .venv
 env/
@@ -212,4 +212,4 @@ marimo/_lsp/
 __marimo__/
 .idea/
 mylog.txt
-.env
+src/.env
