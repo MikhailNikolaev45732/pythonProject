@@ -4,53 +4,63 @@ from dotenv import load_dotenv
 import json
 
 
-def currency_conversion(amount: str, currency: str) -> float:
-    """
-    Функция для конвертации валюты.
-    - param amount: принимает сумму транзакции в виде строки;
-    - param currency: принимает тип валюты транзакции в виде строки;
-    - return: возвращает сумму транзакции в рублях.
-    """
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
 
+
+def currency_conversion(transaction: dict) -> float:
+    """Функция осуществляет конвертацию суммы транзакции в рубли"""
     try:
-        load_dotenv(".env")
-        api_key = os.getenv('API_KEY')
-        print(api_key)
-        url = f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={currency}&amount={amount}"
-        payload = {}
-        headers = {"apikey": f"{api_key}"}
-        print(headers)
-        response = requests.request("GET", url=url, headers=headers, data=payload)
-        #print(response.text)
+        amount = float(transaction["operationAmount"]["amount"])
+        currency = transaction["operationAmount"]["currency"]["code"]
 
-        result = json.loads(response.text) #текстовое содержимое ответа преобразуем из строки JSON в объект Python
-        #print(result)
-        amount_rub = float(result['result'])
-        #print(type(amount_rub))
+        if currency != "RUB":
+            url = f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={currency}&amount={amount}"
+            payload = {}
+            headers = {"apikey": API_KEY}
+            response = requests.request("GET", url=url, headers=headers, data=payload)
+            status_code = response.status_code
+            result = json.loads(response.text)
+            amount_rub = float(result['result'])
+            return amount_rub
+            if status_code != 200:
+                print(f"Ошибка запроса: Код {status_code}, Описание: {result}")
+                return 0.0
 
-        return amount_rub
-
-    except requests.exceptions.RequestException as e:
-        print(f"HTTP ошибка: {e.response.status_code} - {e.response.reason}")
-        print(f"Сообщение об ошибке: {e}")
-
-    except json.JSONDecodeError as e:
-        print("Ошибка декодирования. Invalid result.")
-        print(f"Сообщение об ошибке: {e.msg}")
-        print(f"Строка: {e.lineno}, колонка: {e.colno}")
-
-    except TypeError:
-        print("The object type is not serializable in JSON format.")
-
+            else:
+                return f"Запрос не выполнен.\nКод ошибки: {status_code}.\nОписание ошибки: {result}."
+        else:
+            return amount
     except Exception as e:
-        print(f"Ошибка {e}")
-        print(result)
+        print(f"Ошибка конвертации: {e}")
+        return 0.0
 
 
 if __name__ == "__main__":
-    print(currency_conversion(1000, "USD"))
-    #print(api_key)
+    print(
+        currency_conversion(
+            {
+                "id": 649467725,
+                "state": "EXECUTED",
+                "date": "2018-04-14T19:35:28.978265",
+                "operationAmount": {"amount": "9995.73", "currency": {"name": "руб.", "code": "RUB"}},
+                "description": "Перевод организации",
+                "from": "Счет 27248529432547658655",
+                "to": "Счет 97584898735659638967",
+            },
+        )
+    )
 
-# load_dotenv(".env")
-# api_key = os.getenv("API_KEY")
-# print(api_key)
+    print(
+        currency_conversion(
+            {
+                "id": 782295999,
+                "state": "EXECUTED",
+                "date": "2019-09-11T17:30:34.445824",
+                "operationAmount": {"amount": "4280.01", "currency": {"name": "USD", "code": "USD"}},
+                "description": "Перевод организации",
+                "from": "Счет 24763316288121894080",
+                "to": "Счет 96291777776753236930",
+            }
+        )
+    )
