@@ -1,5 +1,3 @@
-# import pytest
-# import json
 from unittest.mock import patch, mock_open
 from src.utils import get_transaction_data
 

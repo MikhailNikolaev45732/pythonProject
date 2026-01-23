@@ -9,14 +9,13 @@ def get_transaction_data(filepath: str)  -> list[dict]:
             try:
                 transaction_data = json.load(transaction_file)
                 return transaction_data
-            except JSONDecodeError:
+            except json.JSONDecodeError:
                 print("Ошибка декодирования файла")
                 return []
     except FileNotFoundError:
         print(f"Файл {filepath} не найден")
         return []
 
-# Проверка - вывод списка
-#print(get_transaction_data("../data/operations.json"))
+
 if __name__ == "__main__":
      print(get_transaction_data(os.path.join(os.path.dirname(__file__), '../data/operations.json')))
