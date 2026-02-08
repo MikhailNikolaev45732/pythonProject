@@ -34,3 +34,4 @@ def get_mask_account(account_number: int) -> str:
         raise ValueError("Введите номер")
 
     return "**" + account_str[-4:]
+
