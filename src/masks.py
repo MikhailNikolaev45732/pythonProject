@@ -1,11 +1,41 @@
+import requests
+import os
+import datetime
+import logging
+from venv import logger
+
+
 """Функция get_mask_card_number принимает на вход номер карты и возвращает
 её маску
 входной аргумент: 7000792289606361
 выход функции: 7000 79** ****6361"""
 
+# logging.basicConfig(
+#     level=logging.INFO,
+#     format='%(levelname)s:%(name)s:%(message)s'
+# )
+
+logger = logging.getLogger('masks')
+logger.setLevel(logging.DEBUG)
+file_handler = logging.FileHandler('../logs/masks.log', encoding='utf-8')
+file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s: %(message)s')
+file_handler.setFormatter(file_formatter)
+logger.addHandler(file_handler)
+
+# logging.basicConfig(
+#     filename='masks.log',
+#     filemode='a+',
+#     format='%(levelname)s:%(name)s:Request time: %(asctime)s',
+#     level=logging.INFO
+# )
+#
+#
+# logger = logging.getLogger()
+
 
 def get_mask_card_number(card_number: int) -> str:
     """Функция  принимает на вход номер карты и возвращает ее маску."""
+    logger.info("Функция получает на вход номер карты")
     card_str = str(card_number)
     card_num_len = len(card_str)
 
