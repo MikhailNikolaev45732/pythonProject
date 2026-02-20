@@ -26,7 +26,7 @@ popetry add requests
 ## Новые функции:
    Написан код для чтения табличных данных из файлов формата CSV в модуле reading_file_csv.py и из файлов
    формата EXCEL в модуле reading_file_excel.py. Информация из файлов выводится в консоль в виде списка словарей 
-   формата JSON.
+   Python.
 ## Тестирование:
 1. Добавте в окружение пайтесты:
    poetry add --group dev pytest pytest-cov.
