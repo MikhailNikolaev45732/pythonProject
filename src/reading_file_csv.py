@@ -5,6 +5,7 @@ address_file_csv = r'https://github.com/skypro-008/transactions/raw/main/transac
 
 """Функция принимает на вход путь до файла CSV и выдаёт список словарей с транзакциями"""
 
+
 def reading_csv(address_csv: str) -> list:
 
     pd_file = pd.read_csv(address_csv, delimiter=';')
