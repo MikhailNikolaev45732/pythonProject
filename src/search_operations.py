@@ -16,9 +16,13 @@ def process_bank_search(data: List[Dict], search: str) -> List[Dict]:
 
     result = []
     for record in data:
-        description = record.get('description', '')
-        if pattern.search(description):
+        #print(f"Проверяем операцию: {record}")  # Выводим каждую операцию для проверки
+        description = record.get('state', '')
+        #print(f"Описание: {description}")
+        if isinstance(description, str) and pattern.search(description):
+            #print(f"Найдена операция: {record}")  # Выводим операцию, если она подходит
             result.append(record)
+    print('Результат поиска:', result)
     return result
 
 
@@ -37,7 +41,7 @@ def process_bank_operations(data: List[Dict], categories: List[str]) -> Dict[str
     }
 
     for record in data:
-        description = record.get('description', '')
+        description = record.get('state', '')
         matched_category = None
 
         # Проверяем описание на совпадение с категориями
@@ -55,3 +59,4 @@ def process_bank_operations(data: List[Dict], categories: List[str]) -> Dict[str
 
     # Преобразуем defaultdict в обычный dict перед возвратом
     return dict(category_counts)
+
