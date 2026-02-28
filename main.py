@@ -10,7 +10,8 @@ import logging
 #from src import utils
 
 def main():
-
+    #1
+    # print("Текущая рабочая директория:", os.getcwd())
     """Главная функция для работы с приложениями проекта"""
     print(
         '''Привет! Добро пожаловать в программу работы
@@ -22,8 +23,8 @@ def main():
     )
     result_exe = reading_excel(r"C:\Users\acer\Downloads\transactions_excel.xlsx")
     result_csv = reading_csv(r'https://github.com/skypro-008/transactions/raw/main/transactions.csv?plain=1')
-    result_json = get_transaction_data(os.path.join(r'C:/Users/acer/exampl/pythonProject/src/operations.json'))
-
+    result_json = get_transaction_data(r'C:\Users\acer\exampl\pythonProject/data/operations.json')
+    #print(result_json)
     user_choic_f = int(input('Введите номер операции: '))
     print(
         '''Введите статус, по которому необходимо выполнять фильтрацию.
