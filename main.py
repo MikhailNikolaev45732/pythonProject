@@ -1,6 +1,10 @@
 from re import search
 import re
 from src.search_operations import process_bank_search
+from src.search_operations import sort_by_date
+from src.search_operations import sort_by_date_growth
+from src.search_operations import process_bank_currency
+from src.search_operations import process_bank_operations
 from src.reading_file_csv import reading_csv
 from src.reading_file_excel import reading_excel
 from src.utils import get_transaction_data
@@ -34,21 +38,54 @@ def main():
     search = str(input('Введите статус: '))
     if user_choic_f == 1:
         data = result_json
-        return process_bank_search(data, search)
+        #return process_bank_search(data, search)
     elif user_choic_f == 2:
         data = result_csv
-        return process_bank_search(data, search)
+        #return process_bank_search(data, search)
     elif user_choic_f == 3:
         data = result_exe
-        return process_bank_search(data, search)
-    #return process_bank_search(data, 'EXECUTED')
-    #result = reading_excel(r"C:\Users\acer\Downloads\transactions_excel.xlsx")
-    #text = re.search('executed', '')
-    #result_one = process_bank_search(result,text)
-    #print(result_one)
-        #print(data)
+        #return process_bank_search(data, search)
+
     result = process_bank_search(data, search)
-    #print("Результат поиска:", result)
-    #print(result_csv)
+    state_list = result
+
+    print(
+        """Отсортировать операции по дате?"""
+    )
+    user_data = str(input('да/нет :'))
+    print(
+        """Отсортировать по возрастанию или убыванию?"""
+    )
+    user_data_direction = str(input('по возрастанию/по убыванию :'))
+
+    if user_data_direction == 'по убыванию':
+        result_sorted_ = sort_by_date(state_list)
+    elif user_data_direction == 'по возрастанию':
+        result_sorted_ = sort_by_date_growth(state_list)
+    result_sorted = result_sorted_
+    print(
+        """Выводить только рублёвые транзакции?"""
+    )
+    user_data_currency = str(input('да/нет :'))
+
+    if user_data_currency == 'да':
+        search = 'RUB'
+        result_currency_rub = process_bank_currency(result_sorted, search)
+    print(
+        """Отфильтровать список транзакций по определённому слову в описании?"""
+    )
+    user_data_description = str(input('да/нет :'))
+
+    if user_data_description == 'да':
+        categories = ['Перевод со счета на счет', 'Перевод с карты на карту', 'Открытие вклада', 'Перевод организации']
+        result_count_categories = process_bank_operations(result_sorted, categories)
+    print(
+        """Распечатываю итоговый список транзакций ..."""
+    )
+
+    # if user_data_direction == 'по убыванию':
+    #     return sort_by_date(state_list)
+
+
 if __name__ == "__main__":
     main()

@@ -22,11 +22,50 @@ def process_bank_search(data: List[Dict], search: str) -> List[Dict]:
         if isinstance(description, str) and pattern.search(description):
             #print(f"Найдена операция: {record}")  # Выводим операцию, если она подходит
             result.append(record)
-    print('Результат поиска:', result)
-    return result
+
+    state_list = result
+    print('Результат поиска:', state_list)
+    return state_list
 
 
-def process_bank_operations(data: List[Dict], categories: List[str]) -> Dict[str, int]:
+def sort_by_date(state_list: List[Dict], reverse: bool = True) -> List[Dict]:
+    """Сортируем список словарей  по ключю key присваивая значение date через
+    функцию lambda, убывание организуем через reverse и аннотацию типов bool=True"""
+    result_sorted = sorted(state_list, key=lambda item: item["date"], reverse=reverse)
+    print('Результат сортировки даты по убыванию:', result_sorted)
+    return result_sorted
+
+
+def sort_by_date_growth(state_list: List[Dict], reverse: bool = None) -> List[Dict]:
+    """Сортируем список словарей  по ключю key присваивая значение date через
+    функцию lambda, возростание организуем через reverse=False и аннотацию типов bool=None"""
+    result_sorted = sorted(state_list, key=lambda item: item["date"], reverse=False)
+    print('Результат сортировки даты по возрастанию:', result_sorted)
+    return result_sorted
+
+
+def process_bank_currency(result_sorted: List[Dict], search: str) -> List[Dict]:
+    """
+    Ищет в списке словарей по ключу 'description' строки, содержащие search (регулярное выражение).
+    Возвращает список словарей, соответствующих условию.
+    """
+    pattern = re.compile(search, re.IGNORECASE)  # Игнорируем регистр для поиска
+
+    result = []
+    for record in result_sorted:
+        #print(f"Проверяем операцию: {record}")  # Выводим каждую операцию для проверки
+        description = record.get('currency_code', '')
+        #print(f"Описание: {description}")
+        if isinstance(description, str) and pattern.search(description):
+            #print(f"Найдена операция: {record}")  # Выводим операцию, если она подходит
+            result.append(record)
+
+    state_list_currency = result
+    print('Результат поиска по названию валюты:', state_list_currency)
+    return state_list_currency
+
+
+def process_bank_operations(result_sorted: List[Dict], categories: List[str]) -> Dict[str, int]:
     """
     Подсчитывает количество операций по каждой категории на основе поля 'description'.
     Использует регулярные выражения для поиска, а также random для случайных целей (например, при отсутствии совпадений).
@@ -40,8 +79,8 @@ def process_bank_operations(data: List[Dict], categories: List[str]) -> Dict[str
         for cat in categories
     }
 
-    for record in data:
-        description = record.get('state', '')
+    for record in result_sorted:
+        description = record.get('description', '')
         matched_category = None
 
         # Проверяем описание на совпадение с категориями
@@ -58,5 +97,8 @@ def process_bank_operations(data: List[Dict], categories: List[str]) -> Dict[str
             category_counts[random_cat] += 1
 
     # Преобразуем defaultdict в обычный dict перед возвратом
-    return dict(category_counts)
+    result = dict(category_counts)
+    print('непонятная функция', result)
+    print('дефолтное значение', category_counts)
+    return result
 
