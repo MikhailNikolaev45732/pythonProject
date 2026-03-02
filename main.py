@@ -71,6 +71,8 @@ def main():
     if user_data_currency == 'да':
         search = 'RUB'
         result_currency_rub = process_bank_currency(result_sorted, search)
+    elif user_data_currency == 'нет':
+        result_currency_rub = result_sorted
     print(
         """Отфильтровать список транзакций по определённому слову в описании?"""
     )
@@ -78,7 +80,7 @@ def main():
 
     if user_data_description == 'да':
         categories = ['Перевод со счета на счет', 'Перевод с карты на карту', 'Открытие вклада', 'Перевод организации']
-        result_count_categories = process_bank_operations(result_sorted, categories)
+        result_count_categories = process_bank_operations(result_currency_rub, categories)
     print(
         """Распечатываю итоговый список транзакций ..."""
     )

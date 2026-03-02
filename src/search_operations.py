@@ -65,7 +65,7 @@ def process_bank_currency(result_sorted: List[Dict], search: str) -> List[Dict]:
     return state_list_currency
 
 
-def process_bank_operations(result_sorted: List[Dict], categories: List[str]) -> Dict[str, int]:
+def process_bank_operations(result_currency_rub: List[Dict], categories: List[str]) -> Dict[str, int]:
     """
     Подсчитывает количество операций по каждой категории на основе поля 'description'.
     Использует регулярные выражения для поиска, а также random для случайных целей (например, при отсутствии совпадений).
@@ -79,7 +79,7 @@ def process_bank_operations(result_sorted: List[Dict], categories: List[str]) ->
         for cat in categories
     }
 
-    for record in result_sorted:
+    for record in result_currency_rub:
         description = record.get('description', '')
         matched_category = None
 
