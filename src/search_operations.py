@@ -99,6 +99,6 @@ def process_bank_operations(result_currency_rub: List[Dict], categories: List[st
     # Преобразуем defaultdict в обычный dict перед возвратом
     result = dict(category_counts)
     print('непонятная функция', result)
-    print('дефолтное значение', category_counts)
+
     return result
 
