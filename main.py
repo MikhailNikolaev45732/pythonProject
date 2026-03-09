@@ -5,6 +5,8 @@ from src.search_operations import sort_by_date
 from src.search_operations import sort_by_date_growth
 from src.search_operations import process_bank_currency
 from src.search_operations import process_bank_operations
+from src.search_operations import print_sorted
+from src.search_operations import print_sorted_json
 from src.reading_file_csv import reading_csv
 from src.reading_file_excel import reading_excel
 from src.utils import get_transaction_data
@@ -35,7 +37,7 @@ def main():
         Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING'''
     )
 
-    search = str(input('Введите статус: '))
+    search = str(input('Введите статус: ').lower())
     if user_choic_f == 1:
         data = result_json
         #return process_bank_search(data, search)
@@ -43,6 +45,7 @@ def main():
         data = result_csv
         #return process_bank_search(data, search)
     elif user_choic_f == 3:
+
         data = result_exe
         #return process_bank_search(data, search)
 
@@ -52,11 +55,11 @@ def main():
     print(
         """Отсортировать операции по дате?"""
     )
-    user_data = str(input('да/нет :'))
+    user_data = str(input('да/нет :').lower())
     print(
         """Отсортировать по возрастанию или убыванию?"""
     )
-    user_data_direction = str(input('по возрастанию/по убыванию :'))
+    user_data_direction = str(input('по возрастанию/по убыванию :').lower())
 
     if user_data_direction == 'по убыванию':
         result_sorted_ = sort_by_date(state_list)
@@ -66,24 +69,33 @@ def main():
     print(
         """Выводить только рублёвые транзакции?"""
     )
-    user_data_currency = str(input('да/нет :'))
+    user_data_currency = str(input('да/нет :').lower())
 
     if user_data_currency == 'да':
         search = 'RUB'
         result_currency_rub = process_bank_currency(result_sorted, search)
     elif user_data_currency == 'нет':
         result_currency_rub = result_sorted
+    state_list_currency = result
+    result_rub = state_list_currency
     print(
         """Отфильтровать список транзакций по определённому слову в описании?"""
     )
-    user_data_description = str(input('да/нет :'))
+    user_data_description = str(input('да/нет :').lower())
 
     if user_data_description == 'да':
         categories = ['Перевод со счета на счет', 'Перевод с карты на карту', 'Открытие вклада', 'Перевод организации']
         result_count_categories = process_bank_operations(result_currency_rub, categories)
     print(
-        """Распечатываю итоговый список транзакций ..."""
+        """Распечатываю итоговый список транзакций ...\n\n"""
     )
+
+    #if state == search:
+    text_dict = result_rub
+    if user_choic_f == 1:
+        result_final_sorted = print_sorted_json(text_dict)
+    else:
+        result_final_sorted = print_sorted(text_dict)
 
     # if user_data_direction == 'по убыванию':
     #     return sort_by_date(state_list)
