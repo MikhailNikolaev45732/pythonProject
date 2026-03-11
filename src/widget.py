@@ -40,8 +40,8 @@ def mask_account_card(account_string: str) -> str:
 
 # print(mask_account_card("Visa Platinum 7000792289606361"))# Ожидаемый результат: "Visa Platinum 7000 79** **** 6361"
 # print(mask_account_card("Счет 73654108430135874305"))  # Ожидаемый результат: "Счет **4305"
-if __name__ == "__main__":
-
-    numbe_card = "Visa Platinum 7000792289606361"
-result = mask_account_card(numbe_card)
-print(result)
+# if __name__ == "__main__":
+#
+#     numbe_card = "Visa Platinum 7000792289606361"
+# result = mask_account_card(numbe_card)
+# print(result)

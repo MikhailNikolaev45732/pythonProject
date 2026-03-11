@@ -2,6 +2,7 @@ import random
 import re
 from collections import defaultdict
 from typing import Dict, List
+from src.widget import mask_account_card
 
 """Напишите функцию, которая будет принимать список словарей с данными о банковских операциях
  и строку поиска, а возвращать список словарей, у которых в описании есть данная строка. 
@@ -115,13 +116,15 @@ def print_sorted(text_dict):
     return final_result
 
 def print_sorted_json(text_dict):
-    #new_text = []
+
     for text_1 in text_dict:
+        masked_from = mask_account_card(text_1.get('from', 'Не указано'))
+        masked_to = mask_account_card(text_1.get('to', 'Не указано'))
         if text_1.get('from', 'Не указано') == 'Не указано':
             #print(f'{text_1['date']}  {text_1['description']}\n{text_1['to']}\nСумма:{text_1['operationAmount']['amount']} {text_1['operationAmount']['currency']['code']}\n')
-            final_result = f'{text_1['date']}  {text_1['description']}\n{text_1['to']}\nСумма:{text_1['operationAmount']['amount']} {text_1['operationAmount']['currency']['code']}\n'
+            final_result = f'{text_1['date']}  {text_1['description']}\n{masked_to}\nСумма:{text_1['operationAmount']['amount']} {text_1['operationAmount']['currency']['code']}\n'
         else:
             #print(f'{text_1['date']}  {text_1['description']}\n{text_1['from']} -> {text_1['to']}\nСумма:{text_1['operationAmount']['amount']} {text_1['operationAmount']['currency']['code']}\n')
-            final_result = f'{text_1['date']}  {text_1['description']}\n{text_1['from']} -> {text_1['to']}\nСумма:{text_1['operationAmount']['amount']} {text_1['operationAmount']['currency']['code']}\n' f'{text_1['date']}  {text_1['description']}\n{text_1['from']} -> {text_1['to']}\nСумма:{text_1['operationAmount']['amount']} {text_1['operationAmount']['currency']['code']}\n'
+            final_result = f'{text_1['date']}  {text_1['description']}\n{masked_from} -> {masked_to}\nСумма:{text_1['operationAmount']['amount']} {text_1['operationAmount']['currency']['code']}\n' f'{text_1['date']}  {text_1['description']}\n{text_1['from']} -> {text_1['to']}\nСумма:{text_1['operationAmount']['amount']} {text_1['operationAmount']['currency']['code']}\n'
         print(final_result)
     return final_result
