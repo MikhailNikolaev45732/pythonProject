@@ -65,7 +65,7 @@ def main():
         result_sorted_ = sort_by_date(state_list)
     elif user_data_direction == 'по возрастанию':
         result_sorted_ = sort_by_date_growth(state_list)
-    result_sorted = result_sorted_
+        result_sorted = result_sorted_
     print(
         """Выводить только рублёвые транзакции?"""
     )
@@ -73,9 +73,9 @@ def main():
 
     if user_data_currency == 'да':
         search = 'RUB'
-        result_currency_rub = process_bank_currency(result_sorted, search)
+        result_currency_rub = process_bank_currency(result_sorted_, search)
     elif user_data_currency == 'нет':
-        result_currency_rub = result_sorted
+        result_currency_rub = result_sorted_
     state_list_currency = result
     result_rub = state_list_currency
     print(
@@ -85,7 +85,7 @@ def main():
 
     if user_data_description == 'да':
         categories = ['Перевод со счета на счет', 'Перевод с карты на карту', 'Открытие вклада', 'Перевод организации']
-        result_count_categories = process_bank_operations(result_currency_rub, categories)
+        result_count_categories = process_bank_operations(result_rub, categories)
     print(
         """Распечатываю итоговый список транзакций ...\n\n"""
     )

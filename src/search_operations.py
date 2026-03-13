@@ -66,7 +66,7 @@ def process_bank_currency(result_sorted: List[Dict], search: str) -> List[Dict]:
     return state_list_currency
 
 
-def process_bank_operations(result_currency_rub: List[Dict], categories: List[str]) -> Dict[str, int]:
+def process_bank_operations(result_rub: List[Dict], categories: List[str]) -> Dict[str, int]:
     """
     Подсчитывает количество операций по каждой категории на основе поля 'description'.
     Использует регулярные выражения для поиска, а также random для случайных целей (например, при отсутствии совпадений).
@@ -80,7 +80,7 @@ def process_bank_operations(result_currency_rub: List[Dict], categories: List[st
         for cat in categories
     }
 
-    for record in result_currency_rub:
+    for record in result_rub:
         description = record.get('description', '')
         matched_category = None
 
@@ -104,20 +104,27 @@ def process_bank_operations(result_currency_rub: List[Dict], categories: List[st
     return result
 
 def print_sorted(text_dict):
-    #new_text = []
+
     for text_1 in text_dict:
-        #for key, value in text_1.items():
-        #for key, value in text_1.items():
-        #if text_1['state'] == str(state):
-            #print_from = "".join(text_1['from'])
-            #print(print_from)
-        final_result = f'{text_1['date']}  {text_1['description']}\n{text_1['from']} -> {text_1['to']}\nСумма:{text_1['amount']} {text_1['currency_code']}\n'
+        masked_from = mask_account_card(text_1.get('from', 'Не указано'))
+        masked_to = mask_account_card(text_1.get('to', 'Не указано'))
+        if text_1.get('from', 'Не указано') == 'Не указано':
+                # print(f'{text_1['date']}  {text_1['description']}\n{text_1['to']}\nСумма:{text_1['operationAmount']['amount']} {text_1['operationAmount']['currency']['code']}\n')
+            final_result = f'{text_1['date']}  {text_1['description']}\n{masked_to}\nСумма:{text_1['amount']} {text_1['currency_code']}\n'
+        else:
+                #print(f'{text_1['date']}  {text_1['description']}\n{text_1['from']} -> {text_1['to']}\nСумма:{text_1['operationAmount']['amount']} {text_1['operationAmount']['currency']['code']}\n')
+            final_result = f'{text_1['date']}  {text_1['description']}\n{masked_from} -> {masked_to}\nСумма:{text_1['amount']} {text_1['currency_code']}\n'
         print(final_result)
     return final_result
+    #     final_result = f'{text_1['date']}  {text_1['description']}\n{text_1['from']} -> {text_1['to']}\nСумма:{text_1['amount']} {text_1['currency_code']}\n'
+    #     print(final_result)
+    # return final_result
 
 def print_sorted_json(text_dict):
 
     for text_1 in text_dict:
+        data_from = text_1['from']
+        #print(data_from)
         masked_from = mask_account_card(text_1.get('from', 'Не указано'))
         masked_to = mask_account_card(text_1.get('to', 'Не указано'))
         if text_1.get('from', 'Не указано') == 'Не указано':
@@ -125,6 +132,7 @@ def print_sorted_json(text_dict):
             final_result = f'{text_1['date']}  {text_1['description']}\n{masked_to}\nСумма:{text_1['operationAmount']['amount']} {text_1['operationAmount']['currency']['code']}\n'
         else:
             #print(f'{text_1['date']}  {text_1['description']}\n{text_1['from']} -> {text_1['to']}\nСумма:{text_1['operationAmount']['amount']} {text_1['operationAmount']['currency']['code']}\n')
-            final_result = f'{text_1['date']}  {text_1['description']}\n{masked_from} -> {masked_to}\nСумма:{text_1['operationAmount']['amount']} {text_1['operationAmount']['currency']['code']}\n' f'{text_1['date']}  {text_1['description']}\n{text_1['from']} -> {text_1['to']}\nСумма:{text_1['operationAmount']['amount']} {text_1['operationAmount']['currency']['code']}\n'
+            final_result = f'{text_1['date']}  {text_1['description']}\n{masked_from} -> {masked_to}\nСумма:{text_1['operationAmount']['amount']} {text_1['operationAmount']['currency']['code']}\n'
         print(final_result)
+        print(data_from)
     return final_result
