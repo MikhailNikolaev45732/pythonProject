@@ -104,8 +104,10 @@ def process_bank_operations(result_rub: List[Dict], categories: List[str]) -> Di
     return result
 
 def print_sorted(text_dict):
-
+    data_sss = []
     for text_1 in text_dict:
+        data_from = text_1['from']
+        data_sss.append(data_from)
         masked_from = mask_account_card(text_1.get('from', 'Не указано'))
         masked_to = mask_account_card(text_1.get('to', 'Не указано'))
         if text_1.get('from', 'Не указано') == 'Не указано':
@@ -115,6 +117,7 @@ def print_sorted(text_dict):
                 #print(f'{text_1['date']}  {text_1['description']}\n{text_1['from']} -> {text_1['to']}\nСумма:{text_1['operationAmount']['amount']} {text_1['operationAmount']['currency']['code']}\n')
             final_result = f'{text_1['date']}  {text_1['description']}\n{masked_from} -> {masked_to}\nСумма:{text_1['amount']} {text_1['currency_code']}\n'
         print(final_result)
+        print(data_sss)
     return final_result
     #     final_result = f'{text_1['date']}  {text_1['description']}\n{text_1['from']} -> {text_1['to']}\nСумма:{text_1['amount']} {text_1['currency_code']}\n'
     #     print(final_result)
