@@ -7,6 +7,7 @@ from src.search_operations import process_bank_currency
 from src.search_operations import process_bank_operations
 from src.search_operations import print_sorted
 from src.search_operations import print_sorted_json
+from src.search_operations import process_bank_currency_json
 from src.reading_file_csv import reading_csv
 from src.reading_file_excel import reading_excel
 from src.utils import get_transaction_data
@@ -71,13 +72,24 @@ def main():
     )
     user_data_currency = str(input('да/нет :').lower())
 
-    if user_data_currency == 'да':
-        search = 'RUB'
-        result_currency_rub = process_bank_currency(result_sorted_, search)
-    elif user_data_currency == 'нет':
-        result_currency_rub = result_sorted_
-    state_list_currency = result
-    result_rub = state_list_currency
+    if user_choic_f == 2 or user_choic_f == 3:
+        if user_data_currency == 'да':
+            search = 'RUB'
+            result_currency_rub = process_bank_currency(result_sorted_, search)
+        elif user_data_currency == 'нет':
+            result_currency_rub = result_sorted_
+        state_list_currency = result_currency_rub
+        result_rub = state_list_currency
+    elif user_choic_f == 1:
+        if user_data_currency == 'да':
+            search = 'RUB'
+            result_currency_rub = process_bank_currency_json(result_sorted_, search)
+        elif user_data_currency == 'нет':
+            result_currency_rub = result_sorted_
+        state_list_currency = result_currency_rub
+        result_rub = state_list_currency
+
+
     print(
         """Отфильтровать список транзакций по определённому слову в описании?"""
     )
