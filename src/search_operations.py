@@ -1,10 +1,12 @@
 import random
 import re
+import sys
 from collections import defaultdict
 from typing import Dict, List
 from src.widget import mask_account_card
 from src.widget import get_date
 from src.widget import get_date_json
+
 
 """Напишите функцию, которая будет принимать список словарей с данными о банковских операциях
  и строку поиска, а возвращать список словарей, у которых в описании есть данная строка. 
@@ -27,8 +29,10 @@ def process_bank_search(data: List[Dict], search: str) -> List[Dict]:
             result.append(record)
 
     state_list = result
-    print('Результат поиска:', state_list)
+    #print('Результат поиска:', state_list)
+
     return state_list
+
 
 
 def sort_by_date(state_list: List[Dict], reverse: bool = True) -> List[Dict]:
@@ -127,6 +131,12 @@ def process_bank_operations(result_rub: List[Dict], categories: List[str]) -> Di
 
     return result
 
+def print_sorted_category(text_dict):
+    #sum_result = 0
+    for value in text_dict.values():
+        sum_result = sum(value)
+    print(f'Всего банковских операций в выборке: {sum_result}')
+
 def print_sorted(text_dict):
 
     for text_1 in text_dict:
@@ -136,11 +146,11 @@ def print_sorted(text_dict):
         if isinstance(from_value, str):
             masked_from = mask_account_card(from_value)
         else:
-            print("Значение 'from' не является строкой:", from_value)
+            #print("Значение 'from' не является строкой:", from_value)
             # Обрабатываем случай, если значение не строка
             # Например, игнорируем или преобразуем в строку
             masked_from = "Неизвестно"
-
+            #print(f'{date_format}  {text_1['description']}\n{masked_to}\nСумма:{text_1['amount']} {text_1['currency_code']}\n')
         masked_from = mask_account_card(text_1['from'])
         masked_to = mask_account_card(text_1['to'])
         date_format = get_date(text_1['date'])
