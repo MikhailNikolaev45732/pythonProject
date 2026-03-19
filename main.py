@@ -19,8 +19,6 @@ import logging
 #from src import utils
 
 def main():
-    #1
-    # print("Текущая рабочая директория:", os.getcwd())
     """Главная функция для работы с приложениями проекта"""
     print(
         '''Привет! Добро пожаловать в программу работы
@@ -33,24 +31,22 @@ def main():
     result_exe = reading_excel(r"C:\Users\acer\Downloads\transactions_excel.xlsx")
     result_csv = reading_csv(r'https://github.com/skypro-008/transactions/raw/main/transactions.csv?plain=1')
     result_json = get_transaction_data(r'C:\Users\acer\exampl\pythonProject/data/operations.json')
-    #print(result_json)
+
     user_choic_f = int(input('Введите номер операции: '))
     print(
         '''Введите статус, по которому необходимо выполнять фильтрацию.
         Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING'''
     )
 
-    search = str(input('Введите статус: ').lower())
+    search = str(input('Введите статус: \n').lower())
     if user_choic_f == 1:
         data = result_json
-        #return process_bank_search(data, search)
+
     elif user_choic_f == 2:
         data = result_csv
-        #return process_bank_search(data, search)
-    elif user_choic_f == 3:
 
+    elif user_choic_f == 3:
         data = result_exe
-        #return process_bank_search(data, search)
 
     result = process_bank_search(data, search)
     state_list = result
@@ -63,12 +59,12 @@ def main():
     print(
         """Отсортировать операции по дате?"""
     )
-    user_data = str(input('да/нет :').lower())
+    user_data = str(input('да/нет: \n').lower())
     if user_data == 'да':
         print(
             """Отсортировать по возрастанию или убыванию?"""
         )
-        user_data_direction = str(input('по возрастанию/по убыванию :').lower())
+        user_data_direction = str(input('по возрастанию/по убыванию: \n').lower())
 
         if user_data_direction == 'по убыванию':
             result_sorted_ = sort_by_date(state_list)
@@ -80,7 +76,7 @@ def main():
     print(
         """Выводить только рублёвые транзакции?"""
     )
-    user_data_currency = str(input('да/нет :').lower())
+    user_data_currency = str(input('да/нет: \n').lower())
 
     if user_data == 'да':
         if user_choic_f == 2 or user_choic_f == 3:
@@ -117,21 +113,23 @@ def main():
             state_list_currency = result_currency_rub
             result_rub = state_list_currency
 
+    if not state_list_currency:
+        print('Не найдено ни одной транзакции, подходящей под ваши условия фильтрации.')
+        sys.exit()
 
     print(
         """Отфильтровать список транзакций по определённому слову в описании?"""
     )
-    user_data_description = str(input('да/нет :').lower())
+    user_data_description = str(input('да/нет: \n').lower())
 
     if user_data_description == 'да':
         categories = ['Перевод со счета на счет', 'Перевод с карты на карту', 'Открытие вклада', 'Перевод организации']
         result_count_categories = process_bank_operations(result_rub, categories)
-        text_dict = result
-        sorted_category = print_sorted_category(text_dict)
-    print(
-        """Распечатываю итоговый список транзакций ...\n\n"""
-    )
 
+        sorted_category = print_sorted_category(result_count_categories)
+    print(
+        """Распечатываю итоговый список транзакций ...\n"""
+    )
 
     text_dict = result_rub
     if user_choic_f == 1:

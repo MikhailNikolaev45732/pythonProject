@@ -23,23 +23,21 @@ def process_bank_search(data: List[Dict], search: str) -> List[Dict]:
     for record in data:
         #print(f"Проверяем операцию: {record}")  # Выводим каждую операцию для проверки
         description = record.get('state', '')
-        #print(f"Описание: {description}")
+
         if isinstance(description, str) and pattern.search(description):
             #print(f"Найдена операция: {record}")  # Выводим операцию, если она подходит
             result.append(record)
 
     state_list = result
-    #print('Результат поиска:', state_list)
 
     return state_list
-
 
 
 def sort_by_date(state_list: List[Dict], reverse: bool = True) -> List[Dict]:
     """Сортируем список словарей  по ключю key присваивая значение date через
     функцию lambda, убывание организуем через reverse и аннотацию типов bool=True"""
     result_sorted = sorted(state_list, key=lambda item: item["date"], reverse=reverse)
-    print('Результат сортировки даты по убыванию:', result_sorted)
+
     return result_sorted
 
 
@@ -47,7 +45,7 @@ def sort_by_date_growth(state_list: List[Dict], reverse: bool = None) -> List[Di
     """Сортируем список словарей  по ключю key присваивая значение date через
     функцию lambda, возростание организуем через reverse=False и аннотацию типов bool=None"""
     result_sorted = sorted(state_list, key=lambda item: item["date"], reverse=False)
-    print('Результат сортировки даты по возрастанию:', result_sorted)
+
     return result_sorted
 
 
@@ -60,7 +58,7 @@ def process_bank_currency(result_sorted: List[Dict], search: str) -> List[Dict]:
 
     result = []
     for record in result_sorted:
-        #print(f"Проверяем операцию: {record}")  # Выводим каждую операцию для проверки
+        # Выводим каждую операцию для проверки
         description = record.get('currency_code', '')
         #print(f"Описание: {description}")
         if isinstance(description, str) and pattern.search(description):
@@ -68,7 +66,7 @@ def process_bank_currency(result_sorted: List[Dict], search: str) -> List[Dict]:
             result.append(record)
 
     state_list_currency = result
-    print('Результат поиска по названию валюты:', state_list_currency)
+
     return state_list_currency
 
 
@@ -81,16 +79,14 @@ def process_bank_currency_json(result_sorted: List[Dict], search: str) -> List[D
 
     result = []
     for record in result_sorted:
-        #print(f"Проверяем операцию: {record}")  # Выводим каждую операцию для проверки
-        #description = record.get('code', '')
+        # Выводим каждую операцию для проверки
         description = record['operationAmount']['currency'].get('code', '')
         #print(f"Описание: {description}")
         if isinstance(description, str) and pattern.search(description):
-            #print(f"Найдена операция: {record}")  # Выводим операцию, если она подходит
+            # Выводим операцию, если она подходит
             result.append(record)
 
     state_list_currency = result
-    print('Результат поиска по названию валюты:', state_list_currency)
     return state_list_currency
 
 
@@ -126,16 +122,14 @@ def process_bank_operations(result_rub: List[Dict], categories: List[str]) -> Di
             category_counts[random_cat] += 1
 
     # Преобразуем defaultdict в обычный dict перед возвратом
-    result = dict(category_counts)
-    print('непонятная функция', result)
+    result_1 = dict(category_counts)
 
-    return result
+    return result_1
 
-def print_sorted_category(text_dict):
-    #sum_result = 0
-    for value in text_dict.values():
-        sum_result = sum(value)
-    print(f'Всего банковских операций в выборке: {sum_result}')
+def print_sorted_category(result_count_categories):
+
+    sum_result = sum(result_count_categories.values())
+    print(f'\nВсего банковских операций в выборке: {sum_result}')
 
 def print_sorted(text_dict):
 
@@ -150,7 +144,7 @@ def print_sorted(text_dict):
             # Обрабатываем случай, если значение не строка
             # Например, игнорируем или преобразуем в строку
             masked_from = "Неизвестно"
-            #print(f'{date_format}  {text_1['description']}\n{masked_to}\nСумма:{text_1['amount']} {text_1['currency_code']}\n')
+
         masked_from = mask_account_card(text_1['from'])
         masked_to = mask_account_card(text_1['to'])
         date_format = get_date(text_1['date'])
@@ -164,17 +158,13 @@ def print_sorted(text_dict):
 def print_sorted_json(text_dict):
 
     for text_1 in text_dict:
-        #data_from = text_1['from']
-        #print(data_from)
         masked_from = mask_account_card(text_1.get('from', 'Не указано'))
         masked_to = mask_account_card(text_1.get('to', 'Не указано'))
         date_format = get_date_json(text_1['date'])
         if text_1.get('from', 'Не указано') == 'Не указано':
-            #print(f'{text_1['date']}  {text_1['description']}\n{text_1['to']}\nСумма:{text_1['operationAmount']['amount']} {text_1['operationAmount']['currency']['code']}\n')
             final_result = f'{date_format}  {text_1['description']}\n{masked_to}\nСумма:{text_1['operationAmount']['amount']} {text_1['operationAmount']['currency']['code']}\n'
         else:
-            #print(f'{text_1['date']}  {text_1['description']}\n{text_1['from']} -> {text_1['to']}\nСумма:{text_1['operationAmount']['amount']} {text_1['operationAmount']['currency']['code']}\n')
             final_result = f'{date_format}  {text_1['description']}\n{masked_from} -> {masked_to}\nСумма:{text_1['operationAmount']['amount']} {text_1['operationAmount']['currency']['code']}\n'
         print(final_result)
-        #print(data_from)
+
     return final_result
