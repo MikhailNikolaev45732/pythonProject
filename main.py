@@ -46,7 +46,7 @@ def main():
         if search not in valid_statuses:
             print(f'Статус операции "{search}" недоступен.')
             print('Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING')
-    #search = str(input('Введите статус: \n').lower())
+
     if user_choic_f == 1:
         data = result_json
 
@@ -75,7 +75,7 @@ def main():
         if user_data not in valid_statuses_1:
             print(f'Вариант "{user_data}" недоступен.')
             print('Доступные варианты: да/нет')
-    #user_data = str(input('да/нет: \n').lower())
+
     if user_data == 'да':
         print(
             """Отсортировать по возрастанию или убыванию?"""
@@ -88,7 +88,7 @@ def main():
             if user_data_direction not in valid_statuses_2:
                 print(f'Вариант "{user_data_direction}" недоступен.')
                 print('Доступные варианты: по возрастанию/по убыванию')
-        #user_data_direction = str(input('по возрастанию/по убыванию: \n').lower())
+
 
         if user_data_direction == 'по убыванию':
             result_sorted_ = sort_by_date(state_list)
@@ -108,7 +108,7 @@ def main():
         if user_data_currency not in valid_statuses_3:
             print(f'Вариант "{user_data_currency}" недоступен.')
             print('Доступные варианты: да/нет')
-    #user_data_currency = str(input('да/нет: \n').lower())
+
 
     if user_data == 'да':
         if user_choic_f == 2 or user_choic_f == 3:
