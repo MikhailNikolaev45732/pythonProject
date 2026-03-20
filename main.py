@@ -38,7 +38,15 @@ def main():
         Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING'''
     )
 
-    search = str(input('Введите статус: \n').lower())
+    valid_statuses = ["executed", "canceled", "pending"]
+    search = ""
+
+    while search not in valid_statuses:
+        search = input('Введите статус: \n').lower()
+        if search not in valid_statuses:
+            print(f'Статус операции "{search}" недоступен.')
+            print('Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING')
+    #search = str(input('Введите статус: \n').lower())
     if user_choic_f == 1:
         data = result_json
 
@@ -59,12 +67,28 @@ def main():
     print(
         """Отсортировать операции по дате?"""
     )
-    user_data = str(input('да/нет: \n').lower())
+    valid_statuses_1 = ["да", "нет"]
+    user_data = ""
+
+    while user_data not in valid_statuses_1:
+        user_data = input('да/нет: \n').lower()
+        if user_data not in valid_statuses_1:
+            print(f'Вариант "{user_data}" недоступен.')
+            print('Доступные варианты: да/нет')
+    #user_data = str(input('да/нет: \n').lower())
     if user_data == 'да':
         print(
             """Отсортировать по возрастанию или убыванию?"""
         )
-        user_data_direction = str(input('по возрастанию/по убыванию: \n').lower())
+        valid_statuses_2 = ['по возрастанию', 'по убыванию']
+        user_data_direction = ""
+
+        while user_data_direction not in valid_statuses_2:
+            user_data_direction = input('по возрастанию/по убыванию: \n').lower()
+            if user_data_direction not in valid_statuses_2:
+                print(f'Вариант "{user_data_direction}" недоступен.')
+                print('Доступные варианты: по возрастанию/по убыванию')
+        #user_data_direction = str(input('по возрастанию/по убыванию: \n').lower())
 
         if user_data_direction == 'по убыванию':
             result_sorted_ = sort_by_date(state_list)
@@ -76,7 +100,15 @@ def main():
     print(
         """Выводить только рублёвые транзакции?"""
     )
-    user_data_currency = str(input('да/нет: \n').lower())
+    valid_statuses_3 = ["да", "нет"]
+    user_data_currency = ""
+
+    while user_data_currency not in valid_statuses_3:
+        user_data_currency = input('да/нет: \n').lower()
+        if user_data_currency not in valid_statuses_3:
+            print(f'Вариант "{user_data_currency}" недоступен.')
+            print('Доступные варианты: да/нет')
+    #user_data_currency = str(input('да/нет: \n').lower())
 
     if user_data == 'да':
         if user_choic_f == 2 or user_choic_f == 3:
@@ -120,7 +152,15 @@ def main():
     print(
         """Отфильтровать список транзакций по определённому слову в описании?"""
     )
-    user_data_description = str(input('да/нет: \n').lower())
+    valid_statuses_4 = ["да", "нет"]
+    user_data_description = ""
+
+    while user_data_description not in valid_statuses_4:
+        user_data_description = input('да/нет: \n').lower()
+        if user_data_description not in valid_statuses_4:
+            print(f'Вариант "{user_data_description}" недоступен.')
+            print('Доступные варианты: да/нет')
+    #user_data_description = str(input('да/нет: \n').lower())
 
     if user_data_description == 'да':
         categories = ['Перевод со счета на счет', 'Перевод с карты на карту', 'Открытие вклада', 'Перевод организации']
