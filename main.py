@@ -1,5 +1,3 @@
-from re import search
-import re
 import sys
 from src.search_operations import process_bank_search
 from src.search_operations import sort_by_date
@@ -13,10 +11,7 @@ from src.search_operations import print_sorted_category
 from src.reading_file_csv import reading_csv
 from src.reading_file_excel import reading_excel
 from src.utils import get_transaction_data
-import json
-import os
-import logging
-#from src import utils
+
 
 def main():
     """Главная функция для работы с приложениями проекта"""
@@ -89,7 +84,6 @@ def main():
                 print(f'Вариант "{user_data_direction}" недоступен.')
                 print('Доступные варианты: по возрастанию/по убыванию')
 
-
         if user_data_direction == 'по убыванию':
             result_sorted_ = sort_by_date(state_list)
         elif user_data_direction == 'по возрастанию':
@@ -97,6 +91,7 @@ def main():
             result_sorted = result_sorted_
     elif user_data == 'нет':
         pass
+
     print(
         """Выводить только рублёвые транзакции?"""
     )
@@ -108,7 +103,6 @@ def main():
         if user_data_currency not in valid_statuses_3:
             print(f'Вариант "{user_data_currency}" недоступен.')
             print('Доступные варианты: да/нет')
-
 
     if user_data == 'да':
         if user_choic_f == 2 or user_choic_f == 3:
@@ -160,12 +154,10 @@ def main():
         if user_data_description not in valid_statuses_4:
             print(f'Вариант "{user_data_description}" недоступен.')
             print('Доступные варианты: да/нет')
-    #user_data_description = str(input('да/нет: \n').lower())
 
     if user_data_description == 'да':
         categories = ['Перевод со счета на счет', 'Перевод с карты на карту', 'Открытие вклада', 'Перевод организации']
         result_count_categories = process_bank_operations(result_rub, categories)
-
         sorted_category = print_sorted_category(result_count_categories)
     print(
         """Распечатываю итоговый список транзакций ...\n"""
@@ -178,8 +170,5 @@ def main():
         result_final_sorted = print_sorted(text_dict)
 
 
-
-
 if __name__ == "__main__":
-
     main()

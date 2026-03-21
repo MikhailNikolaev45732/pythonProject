@@ -1,6 +1,5 @@
 import random
 import re
-import sys
 from collections import defaultdict
 from typing import Dict, List
 from src.widget import mask_account_card
@@ -8,26 +7,21 @@ from src.widget import get_date
 from src.widget import get_date_json
 
 
-"""Напишите функцию, которая будет принимать список словарей с данными о банковских операциях
- и строку поиска, а возвращать список словарей, у которых в описании есть данная строка. 
- При реализации этой функции используйте библиотеку re"""
-
 def process_bank_search(data: List[Dict], search: str) -> List[Dict]:
     """
     Ищет в списке словарей по ключу 'description' строки, содержащие search (регулярное выражение).
     Возвращает список словарей, соответствующих условию.
     """
     pattern = re.compile(search, re.IGNORECASE)  # Игнорируем регистр для поиска
-
     result = []
+
     for record in data:
-        #print(f"Проверяем операцию: {record}")  # Выводим каждую операцию для проверки
+        # print(f"Проверяем операцию: {record}")  # Выводим каждую операцию для проверки
         description = record.get('state', '')
 
         if isinstance(description, str) and pattern.search(description):
-            #print(f"Найдена операция: {record}")  # Выводим операцию, если она подходит
+            # print(f"Найдена операция: {record}")  # Выводим операцию, если она подходит
             result.append(record)
-
     state_list = result
 
     return state_list
@@ -60,9 +54,9 @@ def process_bank_currency(result_sorted: List[Dict], search: str) -> List[Dict]:
     for record in result_sorted:
         # Выводим каждую операцию для проверки
         description = record.get('currency_code', '')
-        #print(f"Описание: {description}")
+        # print(f"Описание: {description}")
         if isinstance(description, str) and pattern.search(description):
-            #print(f"Найдена операция: {record}")  # Выводим операцию, если она подходит
+            # print(f"Найдена операция: {record}")  # Выводим операцию, если она подходит
             result.append(record)
 
     state_list_currency = result
@@ -81,7 +75,7 @@ def process_bank_currency_json(result_sorted: List[Dict], search: str) -> List[D
     for record in result_sorted:
         # Выводим каждую операцию для проверки
         description = record['operationAmount']['currency'].get('code', '')
-        #print(f"Описание: {description}")
+        # print(f"Описание: {description}")
         if isinstance(description, str) and pattern.search(description):
             # Выводим операцию, если она подходит
             result.append(record)
@@ -93,7 +87,8 @@ def process_bank_currency_json(result_sorted: List[Dict], search: str) -> List[D
 def process_bank_operations(result_rub: List[Dict], categories: List[str]) -> Dict[str, int]:
     """
     Подсчитывает количество операций по каждой категории на основе поля 'description'.
-    Использует регулярные выражения для поиска, а также random для случайных целей (например, при отсутствии совпадений).
+    Использует регулярные выражения для поиска, а также random для случайных целей
+    (например, при отсутствии совпадений).
     """
     # Создаем словарь с дефолтным значением 0 для каждой категории
     category_counts = defaultdict(int)
@@ -126,13 +121,19 @@ def process_bank_operations(result_rub: List[Dict], categories: List[str]) -> Di
 
     return result_1
 
-def print_sorted_category(result_count_categories):
 
+def print_sorted_category(result_count_categories: Dict[str, int]) -> int:
+    """
+    Подсчитываем общее количество банковских операций в выборке
+    """
     sum_result = sum(result_count_categories.values())
     print(f'\nВсего банковских операций в выборке: {sum_result}')
 
-def print_sorted(text_dict):
 
+def print_sorted(text_dict):
+    """
+    Функция выводит в консоль итоговый результат работы всех функций в выбранном формате
+    """
     for text_1 in text_dict:
         from_value = text_1.get('from', 'Не указано')
 
@@ -140,7 +141,7 @@ def print_sorted(text_dict):
         if isinstance(from_value, str):
             masked_from = mask_account_card(from_value)
         else:
-            #print("Значение 'from' не является строкой:", from_value)
+            # print("Значение 'from' не является строкой:", from_value)
             # Обрабатываем случай, если значение не строка
             # Например, игнорируем или преобразуем в строку
             masked_from = "Неизвестно"
@@ -149,22 +150,30 @@ def print_sorted(text_dict):
         masked_to = mask_account_card(text_1['to'])
         date_format = get_date(text_1['date'])
 
-        final_result = f'{date_format}  {text_1['description']}\n{masked_from} -> {masked_to}\nСумма:{text_1['amount']} {text_1['currency_code']}\n'
+        final_result = (f'{date_format}  {text_1['description']}\n{masked_from} -> '
+                        f'{masked_to}\nСумма:{text_1['amount']} {text_1['currency_code']}\n')
 
-        print(f'{date_format}  {text_1['description']}\n{masked_from} -> {masked_to}\nСумма:{text_1['amount']} {text_1['currency_code']}\n')
+        print(f'{date_format}  {text_1['description']}\n{masked_from} -> '
+              f'{masked_to}\nСумма:{text_1['amount']} {text_1['currency_code']}\n')
     return final_result
 
 
 def print_sorted_json(text_dict):
-
+    """
+        Функция выводит в консоль итоговый результат работы всех функций в выбранном формате
+        """
     for text_1 in text_dict:
         masked_from = mask_account_card(text_1.get('from', 'Не указано'))
         masked_to = mask_account_card(text_1.get('to', 'Не указано'))
         date_format = get_date_json(text_1['date'])
         if text_1.get('from', 'Не указано') == 'Не указано':
-            final_result = f'{date_format}  {text_1['description']}\n{masked_to}\nСумма:{text_1['operationAmount']['amount']} {text_1['operationAmount']['currency']['code']}\n'
+            final_result = (f'{date_format}  {text_1['description']}\n{masked_to}\n'
+                            f'Сумма:{text_1['operationAmount']['amount']} '
+                            f'{text_1['operationAmount']['currency']['code']}\n')
         else:
-            final_result = f'{date_format}  {text_1['description']}\n{masked_from} -> {masked_to}\nСумма:{text_1['operationAmount']['amount']} {text_1['operationAmount']['currency']['code']}\n'
+            final_result = (f'{date_format}  {text_1['description']}\n{masked_from} -> '
+                            f'{masked_to}\nСумма:{text_1['operationAmount']['amount']} '
+                            f'{text_1['operationAmount']['currency']['code']}\n')
         print(final_result)
 
     return final_result
