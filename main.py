@@ -23,9 +23,9 @@ def main():
         2. Получить информацию о транзакциях из CSV-файла
         3. Получить информацию о транзакциях из XLSX-файла'''
     )
-    result_exe = reading_excel(r"C:\Users\acer\Downloads\transactions_excel.xlsx")
+    result_exe = reading_excel(r"C:/Users/acer/Downloads/transactions_excel.xlsx")
     result_csv = reading_csv(r'https://github.com/skypro-008/transactions/raw/main/transactions.csv?plain=1')
-    result_json = get_transaction_data(r'C:\Users\acer\exampl\pythonProject/data/operations.json')
+    result_json = get_transaction_data(r'C:/Users/acer/exampl/pythonProject/data/operations.json')
 
     user_choic_f = int(input('Введите номер операции: '))
     print(
