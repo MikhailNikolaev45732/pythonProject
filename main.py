@@ -169,6 +169,8 @@ def main():
     else:
         result_final_sorted = print_sorted(text_dict)
 
+        return result_final_sorted
+
 
 if __name__ == "__main__":
     main()
