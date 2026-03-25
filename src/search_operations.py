@@ -2,9 +2,8 @@ import random
 import re
 from collections import defaultdict
 from typing import Dict, List
-from src.widget import mask_account_card
-from src.widget import get_date
-from src.widget import get_date_json
+
+from src.widget import get_date, get_date_json, mask_account_card
 
 
 def process_bank_search(data: List[Dict], search: str) -> List[Dict]:

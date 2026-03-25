@@ -20,10 +20,10 @@ from typing import Any, Dict, List
 новый список, отсортированный по дате"""
 
 
-def sort_by_date(data_list: List[Dict[str, Any]], reverse=None):#: bool = True) -> List[Dict[str, Any]]:
+def sort_by_date(data_list: List[Dict[str, Any]], reverse=None):  # : bool = True) -> List[Dict[str, Any]]:
     """Сортируем список словарей  по ключю key присваивая значение date через
     функцию lambda, убывание организуем через reverse и аннотацию типов bool=True"""
-    return sorted(data_list, key=lambda item: item["date"], reverse=False)#=reverse)
+    return sorted(data_list, key=lambda item: item["date"], reverse=False)  # =reverse)
 
 
 if __name__ == "__main__":

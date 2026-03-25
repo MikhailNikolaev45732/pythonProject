@@ -7,7 +7,7 @@ from src.decorators import log, my_function
 def test_my_function():
     """Тест декорируемой функции"""
     return x + y
-    result = my_function(x, y)
+    result = my_function(1, 2)
     assert result == 3
 
 

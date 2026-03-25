@@ -21,7 +21,6 @@ if __name__ == "__main__":
         print(next(usd_transactions))
 
 
-
 def transaction_descriptions(transactions):
     """Генератор transaction_descriptions, принимает список словарей с транзакциями и по очереди возвращает
     описание каждой операции"""
@@ -38,11 +37,9 @@ if __name__ == "__main__":
 
     descriptions = transaction_descriptions(transactions)
     for _ in range(5):
-        #range(5):
-       # print(next(descriptions))
-       print(next(descriptions))
+        print(next(descriptions))
 
-import random
+# import random
 
 
 def card_number_generator(start: int, stop: int):
