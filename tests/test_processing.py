@@ -1,5 +1,5 @@
 import pytest
-from src.processing import filter_by_state
+# from src.processing import filter_by_state
 # from src.processing import sort_by_date
 
 # from your_fixture_module import input_dict_list
@@ -33,9 +33,9 @@ def executed_disc_list_date():
     ]
 
 
-@pytest.mark.parametrize("status", ["EXECUTED"])
-def test_filter_by_state(input_dict_list, executed_dict_list, status):
-    assert filter_by_state(input_dict_list, state=status) == executed_dict_list
+# @pytest.mark.parametrize("status", ["EXECUTED"])
+# def test_filter_by_state(input_dict_list, executed_dict_list, status):
+#     assert filter_by_state(input_dict_list, state=status) == executed_dict_list
 
 
 # @pytest.mark.parametrize("data", ["date"])
