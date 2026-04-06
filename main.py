@@ -24,20 +24,16 @@ def main():
         2. Получить информацию о транзакциях из CSV-файла
         3. Получить информацию о транзакциях из XLSX-файла'''
     )
-    #path = str(Path(r"C:/Users/acer/Downloads/transactions_excel.xlsx").expanduser())
-    # new_path = path / "new_folder"
-    #path_1 = str(Path(r'https://github.com/skypro-008/transactions/raw/main/transactions.csv?plain=1').expanduser())
-    # new_path_1 = path_1 / "new_folder"
-    #path_2 = str(Path(r'C:/Users/acer/exampl/pythonProject/data/operations.json').expanduser())
-    # new_path_2 = path_2 / "new_folder"
+
+    # BASE_DIR = Path(__file__).resolve().parent
+    #
+    # result_exe = BASE_DIR / "Users" / "acer" / "Downloads" / "transactions_excel.xlsx"
+    # result_csv = BASE_DIR / "github.com" / "skypro-008" / "transactions" / "raw" / "main" / "transactions.csv?plain=1"
+    # result_json = BASE_DIR / "Users" / "acer" / "exampl" / "pythonProject" / "data" / "operations.json"
 
     result_exe = reading_excel(r"C:/Users/acer/Downloads/transactions_excel.xlsx")
     result_csv = reading_csv(r'https://github.com/skypro-008/transactions/raw/main/transactions.csv?plain=1')
     result_json = get_transaction_data(r'C:/Users/acer/exampl/pythonProject/data/operations.json')
-
-    #result_exe = reading_excel(path)
-    #result_csv = reading_csv(path_1)
-    #result_json = get_transaction_data(path_2)
 
     user_choic_f = int(input('Введите номер операции: '))
     print(

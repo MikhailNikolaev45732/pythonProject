@@ -3,7 +3,7 @@ import re
 from collections import defaultdict
 from typing import Dict, List
 
-from src.widget import get_date, get_date_json, mask_account_card
+from src.widget_project import get_date, get_date_json, mask_account_card
 
 
 def process_bank_search(data: List[Dict], search: str) -> List[Dict]:
