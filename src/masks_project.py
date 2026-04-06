@@ -11,6 +11,7 @@ def get_mask_card_number(card_number: int) -> str:
 
     return card_str[:4] + " " + card_str[4:6] + "** ****" + card_str[-4:]
 
+
 """Функция get_mask_account принимает на вход номер счета и возвращает
    его маску
    входной аргумент: 73654108430135874305

@@ -14,6 +14,7 @@ transaction = {
     }
 }
 
+
 @patch('requests.request')
 def test_currency_conversion(mock_request):
     """@patch('requests.request') используется для замены функции requests.request на её макет,
@@ -29,6 +30,7 @@ def test_currency_conversion(mock_request):
 
     # Проверка
     assert result == 7500.0
+
 
 if __name__ == "__main__":
     pytest.main()

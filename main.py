@@ -11,7 +11,7 @@ from src.search_operations import print_sorted_category
 from src.reading_file_csv import reading_csv
 from src.reading_file_excel import reading_excel
 from src.utils import get_transaction_data
-from pathlib import Path
+# from pathlib import Path
 
 
 def main():
@@ -28,7 +28,8 @@ def main():
     # BASE_DIR = Path(__file__).resolve().parent
     #
     # result_exe = BASE_DIR / "Users" / "acer" / "Downloads" / "transactions_excel.xlsx"
-    # result_csv = BASE_DIR / "github.com" / "skypro-008" / "transactions" / "raw" / "main" / "transactions.csv?plain=1"
+    # result_csv = BASE_DIR / "github.com" / "skypro-008" / "transactions" / "raw" / "main" /
+    # "transactions.csv?plain=1"
     # result_json = BASE_DIR / "Users" / "acer" / "exampl" / "pythonProject" / "data" / "operations.json"
 
     result_exe = reading_excel(r"C:/Users/acer/Downloads/transactions_excel.xlsx")
