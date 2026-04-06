@@ -35,4 +35,4 @@ def test_get_date(date_string, expected):
 
 def test_get_date_invalid_input():
     with pytest.raises(ValueError):
-        get_date(" ")
+        get_date_json("")

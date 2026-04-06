@@ -1,13 +1,34 @@
-# import pytest
-# import json
-from unittest.mock import patch
+import pytest
+import json
+from unittest.mock import patch, Mock
 from src.external_api import currency_conversion
 
+
+# Пример транзакции
+transaction = {
+    "operationAmount": {
+        "amount": "100.0",
+        "currency": {
+            "code": "USD"
+        }
+    }
+}
 
 @patch('requests.request')
 def test_currency_conversion(mock_request):
     """@patch('requests.request') используется для замены функции requests.request на её макет,
-     чтобы мы могли контролировать возвращаемые данные и не делать реальные запросы к API."""
-    mock_request.return_value.json.return_value = {'result': None}
-    result = currency_conversion("8221.37", "USD")
-    assert result == None, "Конвертация валюты не прошла как ожидалось"
+    #      чтобы мы могли контролировать возвращаемые данные и не делать реальные запросы к API."""
+    # Подготовка
+    mock_response = Mock()
+    mock_response.status_code = 200
+    mock_response.text = json.dumps({'result': '7500.0'})  # Например, 100 USD = 7500 RUB
+    mock_request.return_value = mock_response
+
+    # Действие
+    result = currency_conversion(transaction)
+
+    # Проверка
+    assert result == 7500.0
+
+if __name__ == "__main__":
+    pytest.main()

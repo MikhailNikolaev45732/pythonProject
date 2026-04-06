@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Coverage for src\widget.py: 85%</title>
+    <title>Coverage for src\widget.py: 84%</title>
     <link rel="icon" sizes="32x32" href="favicon_32_cb_58284776.png">
     <link rel="stylesheet" href="style_cb_42a278b0.css" type="text/css">
     <script src="coverage_html_cb_513c77fd.js" defer></script>
@@ -12,7 +12,7 @@
     <div class="content">
         <h1>
             <span class="text">Coverage for </span><b>src&#8201;\&#8201;widget.py</b>:
-            <span class="pc_cov">85%</span>
+            <span class="pc_cov">84%</span>
         </h1>
         <aside id="help_panel_wrapper">
             <input id="help_panel_state" type="checkbox">
@@ -54,18 +54,18 @@
             </div>
         </aside>
         <h2>
-            <span class="text">27 statements &nbsp;</span>
-            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">23<span class="text"> run</span></button>
-            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">4<span class="text"> missing</span></button>
+            <span class="text">31 statements &nbsp;</span>
+            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">26<span class="text"> run</span></button>
+            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">5<span class="text"> missing</span></button>
             <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">0<span class="text"> excluded</span></button>
         </h2>
         <p class="text">
             <a id="prevFileLink" class="nav" href="z_145eef247bfb46b6_utils_py.html">&#xab; prev</a> &nbsp; &nbsp;
             <a id="indexLink" class="nav" href="index.html">&Hat; index</a> &nbsp; &nbsp;
-            <a id="nextFileLink" class="nav" href="index.html">&#xbb; next</a>
+            <a id="nextFileLink" class="nav" href="z_145eef247bfb46b6_widget_project_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.13.0">coverage.py v7.13.0</a>,
-            created at 2026-03-26 02:01 +0300
+            created at 2026-04-06 21:25 +0300
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -90,22 +90,22 @@
     <p class="pln"><span class="n"><a id="t8" href="#t8">8</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t9" href="#t9">9</a></span><span class="t"><span class="key">def</span> <span class="nam">get_date</span><span class="op">(</span><span class="nam">iso_date_str</span><span class="op">:</span> <span class="nam">str</span><span class="op">)</span> <span class="op">-></span> <span class="nam">str</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t10" href="#t10">10</a></span><span class="t">    <span class="str">"""&#1055;&#1088;&#1077;&#1086;&#1073;&#1088;&#1072;&#1079;&#1091;&#1077;&#1090; &#1076;&#1072;&#1090;&#1091; &#1080;&#1079; &#1092;&#1086;&#1088;&#1084;&#1072;&#1090;&#1072; ISO8601 &#1074; &#1092;&#1086;&#1088;&#1084;&#1072;&#1090; 'DD.MM.YYYY'"""</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t11" href="#t11">11</a></span><span class="t">    <span class="com"># if iso_date_str == "":</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t12" href="#t12">12</a></span><span class="t">    <span class="com"># raise ValueError("&#1042;&#1074;&#1077;&#1076;&#1080;&#1090;&#1077; &#1076;&#1072;&#1090;&#1091;")</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t11" href="#t11">11</a></span><span class="t">    <span class="key">if</span> <span class="nam">iso_date_str</span> <span class="op">==</span> <span class="str">""</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t12" href="#t12">12</a></span><span class="t">        <span class="key">raise</span> <span class="nam">ValueError</span><span class="op">(</span><span class="str">"&#1042;&#1074;&#1077;&#1076;&#1080;&#1090;&#1077; &#1076;&#1072;&#1090;&#1091;"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t13" href="#t13">13</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t14" href="#t14">14</a></span><span class="t">    <span class="nam">cleaned_iso_date</span> <span class="op">=</span> <span class="nam">iso_date_str</span><span class="op">.</span><span class="nam">split</span><span class="op">(</span><span class="str">"."</span><span class="op">)</span><span class="op">[</span><span class="num">0</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t15" href="#t15">15</a></span><span class="t">    <span class="nam">date_obj</span> <span class="op">=</span> <span class="nam">datetime</span><span class="op">.</span><span class="nam">strptime</span><span class="op">(</span><span class="nam">cleaned_iso_date</span><span class="op">,</span> <span class="str">"%Y-%m-%dT%H:%M:%SZ"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t14" href="#t14">14</a></span><span class="t">    <span class="nam">cleaned_iso_date</span> <span class="op">=</span> <span class="nam">iso_date_str</span><span class="op">.</span><span class="nam">split</span><span class="op">(</span><span class="str">"."</span><span class="op">)</span><span class="op">[</span><span class="num">0</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t15" href="#t15">15</a></span><span class="t">    <span class="nam">date_obj</span> <span class="op">=</span> <span class="nam">datetime</span><span class="op">.</span><span class="nam">strptime</span><span class="op">(</span><span class="nam">cleaned_iso_date</span><span class="op">,</span> <span class="str">"%Y-%m-%dT%H:%M:%SZ"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="mis show_mis"><span class="n"><a id="t16" href="#t16">16</a></span><span class="t">    <span class="key">return</span> <span class="nam">date_obj</span><span class="op">.</span><span class="nam">strftime</span><span class="op">(</span><span class="str">"%d.%m.%Y"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t17" href="#t17">17</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t18" href="#t18">18</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t19" href="#t19">19</a></span><span class="t"><span class="key">def</span> <span class="nam">get_date_json</span><span class="op">(</span><span class="nam">iso_date_str</span><span class="op">:</span> <span class="nam">str</span><span class="op">)</span> <span class="op">-></span> <span class="nam">str</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t20" href="#t20">20</a></span><span class="t">    <span class="str">"""&#1055;&#1088;&#1077;&#1086;&#1073;&#1088;&#1072;&#1079;&#1091;&#1077;&#1090; &#1076;&#1072;&#1090;&#1091; &#1080;&#1079; &#1092;&#1086;&#1088;&#1084;&#1072;&#1090;&#1072; ISO8601 &#1074; &#1092;&#1086;&#1088;&#1084;&#1072;&#1090; 'DD.MM.YYYY'"""</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t21" href="#t21">21</a></span><span class="t">    <span class="com"># if iso_date_str == "":</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t22" href="#t22">22</a></span><span class="t">    <span class="com"># raise ValueError("&#1042;&#1074;&#1077;&#1076;&#1080;&#1090;&#1077; &#1076;&#1072;&#1090;&#1091;")</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t21" href="#t21">21</a></span><span class="t">    <span class="key">if</span> <span class="nam">iso_date_str</span> <span class="op">==</span> <span class="str">""</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t22" href="#t22">22</a></span><span class="t">        <span class="key">raise</span> <span class="nam">ValueError</span><span class="op">(</span><span class="str">"&#1042;&#1074;&#1077;&#1076;&#1080;&#1090;&#1077; &#1076;&#1072;&#1090;&#1091;"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t23" href="#t23">23</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t24" href="#t24">24</a></span><span class="t">    <span class="nam">cleaned_iso_date</span> <span class="op">=</span> <span class="nam">iso_date_str</span><span class="op">.</span><span class="nam">split</span><span class="op">(</span><span class="str">"."</span><span class="op">)</span><span class="op">[</span><span class="num">0</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t25" href="#t25">25</a></span><span class="t">    <span class="nam">date_obj</span> <span class="op">=</span> <span class="nam">datetime</span><span class="op">.</span><span class="nam">strptime</span><span class="op">(</span><span class="nam">cleaned_iso_date</span><span class="op">,</span> <span class="str">"%Y-%m-%dT%H:%M:%S"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t26" href="#t26">26</a></span><span class="t">    <span class="key">return</span> <span class="nam">date_obj</span><span class="op">.</span><span class="nam">strftime</span><span class="op">(</span><span class="str">"%d.%m.%Y"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t24" href="#t24">24</a></span><span class="t">    <span class="nam">cleaned_iso_date</span> <span class="op">=</span> <span class="nam">iso_date_str</span><span class="op">.</span><span class="nam">split</span><span class="op">(</span><span class="str">"."</span><span class="op">)</span><span class="op">[</span><span class="num">0</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t25" href="#t25">25</a></span><span class="t">    <span class="nam">date_obj</span> <span class="op">=</span> <span class="nam">datetime</span><span class="op">.</span><span class="nam">strptime</span><span class="op">(</span><span class="nam">cleaned_iso_date</span><span class="op">,</span> <span class="str">"%Y-%m-%dT%H:%M:%S"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t26" href="#t26">26</a></span><span class="t">    <span class="key">return</span> <span class="nam">date_obj</span><span class="op">.</span><span class="nam">strftime</span><span class="op">(</span><span class="str">"%d.%m.%Y"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t27" href="#t27">27</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t28" href="#t28">28</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t29" href="#t29">29</a></span><span class="t"><span class="com"># print(get_date("2024-03-11T02:26:18.671407"))  # &#1054;&#1078;&#1080;&#1076;&#1072;&#1077;&#1084;&#1099;&#1081; &#1088;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;: "11.03.2024"</span>&nbsp;</span><span class="r"></span></p>
@@ -144,10 +144,10 @@
         <p>
             <a class="nav" href="z_145eef247bfb46b6_utils_py.html">&#xab; prev</a> &nbsp; &nbsp;
             <a class="nav" href="index.html">&Hat; index</a> &nbsp; &nbsp;
-            <a class="nav" href="index.html">&#xbb; next</a>
+            <a class="nav" href="z_145eef247bfb46b6_widget_project_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.13.0">coverage.py v7.13.0</a>,
-            created at 2026-03-26 02:01 +0300
+            created at 2026-04-06 21:25 +0300
         </p>
     </div>
 </footer>
