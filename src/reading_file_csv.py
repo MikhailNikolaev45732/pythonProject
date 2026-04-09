@@ -1,4 +1,6 @@
 import pandas as pd
+import json
+# from idlelib.iomenu import encoding
 
 
 address_file_csv = r'https://github.com/skypro-008/transactions/raw/main/transactions.csv?plain=1'
@@ -9,8 +11,9 @@ address_file_csv = r'https://github.com/skypro-008/transactions/raw/main/transac
 def reading_csv(address_csv: str) -> list:
 
     pd_file = pd.read_csv(address_csv, delimiter=';')
-    result = pd_file.to_dict(orient='records')
-
+    result = pd_file.fillna('').to_dict(orient='records')
+    with open('../data/transactions_csv.json', 'w', encoding='utf-8') as file:
+        json.dump(result, file, ensure_ascii=False, indent=4)
     return result
 
 
