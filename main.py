@@ -8,8 +8,8 @@ from src.search_operations import print_sorted
 from src.search_operations import print_sorted_json
 from src.search_operations import process_bank_currency_json
 from src.search_operations import print_sorted_category
-# from src.reading_file_csv import reading_csv
-# from src.reading_file_excel import reading_excel
+from src.reading_file_csv import reading_csv
+from src.reading_file_excel import reading_excel
 from src.utils import get_transaction_data
 # from pathlib import Path
 
@@ -28,13 +28,13 @@ def main():
     # BASE_DIR = Path(__file__).resolve().parent
     # result_csv = BASE_DIR / "data" / "transactions_csv.json"
     # result_json = BASE_DIR / "data" / "operations.json"
-    # result_exe = BASE_DIR / "Users" / "acer" / "Downloads" / "transactions_excel.xlsx"
+    # result_exe = BASE_DIR / "data" / "transactions_excel.json"
     # result_csv = BASE_DIR / "github.com" / "skypro-008" / "transactions" / "raw" / "main" /"transactions.csv?plain=1"
     # result_json = BASE_DIR / "Users" / "acer" / "exampl" / "pythonProject" / "data" / "operations.json"
 
-    result_exe = get_transaction_data(r'C:/Users/acer/exampl/pythonProject/data/transactions_excel.json')
+    result_exe = reading_excel(r"C:\Users\acer\Downloads\transactions_excel.xlsx")
     # result_csv = reading_csv(r'https://github.com/skypro-008/transactions/raw/main/transactions.csv?plain=1')
-    result_csv = get_transaction_data(r'C:/Users/acer/exampl/pythonProject/data/transactions_csv.json')
+    result_csv = reading_csv(r'https://github.com/skypro-008/transactions/raw/main/transactions.csv?plain=1')
     result_json = get_transaction_data(r'C:/Users/acer/exampl/pythonProject/data/operations.json')
 
     user_choic_f = int(input('Введите номер операции: '))

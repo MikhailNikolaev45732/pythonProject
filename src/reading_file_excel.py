@@ -11,8 +11,8 @@ address_file_excel = r"C:\Users\acer\Downloads\transactions_excel.xlsx"
 def reading_excel(address_ex: str) -> list:
     pd_file = pd.read_excel(address_ex)
     result = pd_file.fillna('').to_dict(orient='records')
-    with open('../data/transactions_excel.json', 'w', encoding='utf-8') as file:
-        json.dump(result, file, ensure_ascii=False, indent=4)
+    # with open('../data/transactions_excel.json', 'w', encoding='utf-8') as file:
+    #     json.dump(result, file, ensure_ascii=False, indent=4)
 
     return result
 
